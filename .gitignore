@@ -6,3 +6,5 @@ __pycache__/
 /result
 /example.png
 /.DS_Store
+/config.local.json
+/runtime/

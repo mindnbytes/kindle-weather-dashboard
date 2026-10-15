@@ -1,0 +1,99 @@
+{
+  "latitude": 0,
+  "longitude": 0,
+  "generationtime_ms": 0.1,
+  "utc_offset_seconds": 0,
+  "timezone": "GMT",
+  "timezone_abbreviation": "GMT",
+  "elevation": 0,
+  "current_units": {
+    "time": "unixtime",
+    "interval": "seconds",
+    "temperature_2m": "\u00b0C",
+    "apparent_temperature": "\u00b0C",
+    "weather_code": "wmo code"
+  },
+  "current": {
+    "time": 1792107000,
+    "interval": 900,
+    "temperature_2m": 2,
+    "apparent_temperature": 0,
+    "weather_code": 71
+  },
+  "hourly_units": {
+    "time": "unixtime",
+    "temperature_2m": "\u00b0C",
+    "precipitation_probability": "%",
+    "weather_code": "wmo code"
+  },
+  "hourly": {
+    "time": [
+      1792105200,
+      1792108800,
+      1792112400,
+      1792116000,
+      1792119600,
+      1792123200,
+      1792126800
+    ],
+    "temperature_2m": [
+      2,
+      1,
+      0,
+      -1,
+      -1,
+      0,
+      1
+    ],
+    "precipitation_probability": [
+      20,
+      25,
+      30,
+      35,
+      40,
+      50,
+      60
+    ],
+    "weather_code": [
+      3,
+      45,
+      51,
+      61,
+      71,
+      95,
+      2
+    ]
+  },
+  "daily_units": {
+    "time": "unixtime",
+    "temperature_2m_min": "\u00b0C",
+    "temperature_2m_max": "\u00b0C",
+    "weather_code": "wmo code"
+  },
+  "daily": {
+    "time": [
+      1792022400,
+      1792108800,
+      1792195200,
+      1792281600
+    ],
+    "temperature_2m_min": [
+      -2,
+      -3,
+      -2,
+      0
+    ],
+    "temperature_2m_max": [
+      3,
+      3,
+      5,
+      6
+    ],
+    "weather_code": [
+      3,
+      71,
+      95,
+      61
+    ]
+  }
+}

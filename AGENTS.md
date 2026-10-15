@@ -20,7 +20,13 @@ Mac SCP transfer, SHA-256 read-back and single FBInk 1.25.0 draw succeeded;
 owner confirmed the physical image looked good and requested commit/pause.
 This latest session's teardown is requested but not yet confirmed. On resume,
 reconfirm device/network state. Next is M3 weather acquisition/cache/local HTTP
-on Mac/Nix; no automation or power-management changes yet. Offline WLAN uses the approved
+on Mac/Nix; no automation or power-management changes yet. M3 Mac pipeline now
+implements API-shaped invented-fixture acquisition, normalization/cache, atomic
+PNG publication and loopback-only-by-default HTTP. Owner chose invented data
+for now; real location comes later through ignored local config. Read
+docs/weather-pipeline.md. Real-location and Kindle LAN retrieval acceptance are
+pending; do not infer full M3/deployment completion from local tests.
+Offline WLAN uses the approved
 WIFI_NO_NET_PROBE flag; temporary usbnet/verbose remains pending cleanup.
 Keep the blocker enabled and use airplane mode when parked. Automatic SSH
 startup is disabled. Device modification requires explicit approval of exact

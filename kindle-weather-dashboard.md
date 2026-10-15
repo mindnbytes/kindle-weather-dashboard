@@ -106,10 +106,10 @@ fbink -i /mnt/us/weather.png
 ### M3 — Weather data and server
 
 - [ ] Fetch forecast on the Mac during development; later on the NixOS home server (candidate: [Open-Meteo](https://open-meteo.com/)). Set location explicitly in config; do not hardcode API credentials.
-- [ ] Cache last known forecast. Define failure behavior for API/network outages.
-- [ ] Render: current temperature, feels-like or precipitation, hourly trend, next 1–3 days, last-updated timestamp.
-- [ ] Export a grayscale PNG, atomically replacing the served file (`tmp` + rename).
-- [ ] Serve locally from the Mac during development and test retrieval independently. Later move the endpoint to the NixOS mini and verify Kindle connectivity before changing the Kindle URL.
+- [x] Cache last known forecast. Define failure behavior for API/network outages (retain previous PNG and timestamps; nonzero update exit, 503 before first success).
+- [x] Render current temperature, feels-like/precipitation, six hourly columns, three future days, conditions-valid and image-generation timestamps.
+- [x] Export a grayscale PNG, atomically replacing the served file (`tmp` + rename).
+- [x] Serve locally from the Mac and test loopback retrieval independently. Kindle LAN retrieval and later NixOS endpoint migration remain pending.
 - [ ] Only for deployment, integrate with existing NixOS configuration; use a dedicated `systemd` service/timer rather than cron if scheduling on the server. Bind only to the appropriate LAN address, and open only the required firewall port (if any).
 
 ### M4 — Unattended periodic refresh

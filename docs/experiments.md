@@ -1,5 +1,41 @@
 # Experiments
 
+## 2026-10-15 — M3 Mac pipeline; invented API-shaped fixture
+
+Implemented a standard-library Open-Meteo adapter and one-shot updater plus a
+single-image HTTP server, reusing Pillow and the existing renderer. Owner chose
+invented fixture data for now; future real location will be supplied privately.
+Added a synthetic Open-Meteo-shaped JSON fixture with units, Unix timestamps,
+current/hourly/daily fields, midnight crossing and snow/storm cases. Fixture and
+live modes share normalization, validation, cache and publication functions;
+fixture acquisition uses a fixed clock and labels the image SAMPLE DATA.
+Original M2 fixture/PNG is preserved. No Kindle connection or changes performed.
+
+Normalized snapshot cache and PNG use individual atomic replacements. On fetch,
+validation or render failure the prior cache/image remain intact; an absent image
+returns HTTP 503. The server defaults to loopback, serves only /weather.png,
+disables client caching and does not expose forecast.json. No daemon/timer installed.
+
+Validation: `nix develop -c python -m unittest discover -s tests -v` passed all
+nine tests. Coverage includes original renderer, deterministic fixture CLI,
+midnight/+02:00 handling, invalid/stale responses, acquisition-failure retention,
+and actual loopback HTTP exact-byte retrieval plus 404/503 behavior. Ran
+`nix develop -c python -m server.weather --fixture server/fixtures/open-meteo.json`;
+visually inspected the exact runtime/weather.png: readable, unclipped grayscale
+layout with precipitation label and distinct snow/storm symbols. `git diff --check`
+passed. Loopback test server was shut down; no HTTP service left running.
+
+Before owner selected fixture-only development, one live smoke request using
+non-personal 0/0 test coordinates passed fetch/normalize/PNG publication; temporary
+image was inspected. No real-location fetch or Kindle HTTP retrieval is claimed.
+API documentation: https://open-meteo.com/en/docs. Current valid time is labeled
+Valid, not misrepresented as upstream model update time. API fixed offset behavior
+and day/night icon limitation are documented in weather-pipeline.md.
+
+Mac fixture-to-HTTP development checkpoint is ready for review. M3 as a whole
+remains open for real-location acceptance, Kindle LAN retrieval and later NixOS
+deployment. UI/touch persistence remains the separately reviewed M4 concern.
+
 ## 2026-10-15 — UI overwrite and touch behavior; milestone reconciliation
 
 Owner clarified that the image renders perfectly, but the original UI later

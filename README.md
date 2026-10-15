@@ -22,7 +22,11 @@ explicit M4 gates. The approved procedure is in the [first-image action sheet](d
 Owner requested a pause; this session's server stop/airplane-mode teardown has
 been requested but not yet confirmed. SSH startup remains manual. Next is M3:
 weather acquisition, caching and local HTTP delivery on Mac/Nix; NixOS deployment
-and unattended refresh come later. Read the
+and unattended refresh come later. The Mac M3 pipeline now supports an invented
+Open-Meteo-shaped fixture, validated normalization/cache, atomic PNG publication
+and loopback HTTP delivery. Live acquisition has had one non-personal smoke
+check; real-location and Kindle LAN retrieval acceptance remain pending.
+Read the
 [project brief](kindle-weather-dashboard.md) for safety and review gates.
 
 Device evidence and approved actions are in [the experiment log](docs/experiments.md)
@@ -45,6 +49,19 @@ The first `nix develop` may download dependencies. Subsequent rendering and test
 use local fixture data and require no network. `flake.lock` pins the development
 environment; Python and Pillow are the only runtime dependencies. The flake is a
 development shell, with no NixOS service or deployment configuration.
+
+## M3 offline data-to-HTTP workflow
+
+```sh
+nix develop -c python -m server.weather --fixture server/fixtures/open-meteo.json
+nix develop -c python -m server.serve
+```
+
+Fetch `http://127.0.0.1:8000/weather.png` locally and stop the server with Ctrl-C.
+This leaves the original M2 `weather.png` untouched. See [the pipeline guide](docs/weather-pipeline.md)
+for fixture/API correspondence, caching and outage behavior, private live config,
+validation, and the later explicit LAN binding. Invented data remains the current
+workflow; no Kindle changes or background services are included.
 
 Without entering an interactive shell:
 

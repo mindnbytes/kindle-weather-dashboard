@@ -15,7 +15,7 @@ DEFAULT_FIXTURE = Path(__file__).parent / "fixtures" / "weather.json"
 
 def weather_icon(draw, x, y, condition):
     """Draw small monochrome symbols without external assets or emoji fonts."""
-    if condition not in {"sunny", "cloudy", "partly_cloudy", "rain"}:
+    if condition not in {"sunny", "cloudy", "partly_cloudy", "rain", "snow", "storm"}:
         raise ValueError(f"Unsupported hourly condition: {condition}")
     if condition in {"sunny", "partly_cloudy"}:
         sx, sy = (x, y) if condition == "sunny" else (x - 11, y - 9)
@@ -37,6 +37,12 @@ def weather_icon(draw, x, y, condition):
     if condition == "rain":
         for dx in (-14, 1, 16):
             draw.line((x + dx, y + 29, x + dx - 5, y + 37), fill=0, width=3)
+    if condition == "snow":
+        for dx in (-16, 4, 24):
+            draw.line((x + dx - 4, y + 30, x + dx + 4, y + 38), fill=0, width=2)
+            draw.line((x + dx - 4, y + 38, x + dx + 4, y + 30), fill=0, width=2)
+    if condition == "storm":
+        draw.line((x + 6, y + 24, x - 5, y + 34, x + 3, y + 34, x - 8, y + 44), fill=0, width=3)
 
 
 def render(data):
@@ -61,7 +67,7 @@ def render(data):
     def rule(y):
         draw.line((40, y, 718, y), fill=0, width=3)
 
-    text(40, 30, "WEATHER / SAMPLE DATA", 23)
+    text(40, 30, f'WEATHER / {data.get("source", "SAMPLE DATA")}', 23)
     text(40, 69, data["location"], 38)
     text(40, 122, generated.strftime("%a %d %b %Y"), 24)
     rule(164)
@@ -70,7 +76,7 @@ def render(data):
     text(40, 184, f'{current["temperature_c"]:g} C', 108)
     text(44, 312, current["condition"], 37)
     text(44, 370, f'Feels like {current["feels_like_c"]:g} C', 27)
-    text(44, 411, f'Chance of rain {current["precipitation_probability_pct"]:g}%', 27)
+    text(44, 411, f'{current.get("precipitation_label", "Chance of rain")} {current["precipitation_probability_pct"]:g}%', 27)
     rule(465)
 
     text(40, 486, "HOURLY FORECAST / C", 23)
@@ -90,7 +96,8 @@ def render(data):
         text(718, y, f'{day["low_c"]:g} / {day["high_c"]:g} C', 25, "rt")
     rule(923)
     text(40, 939, f'Generated {generated.strftime("%d %b %H:%M %z")}', 20)
-    text(40, 974, f'Forecast {updated.strftime("%H:%M %z")} / age at generation: {age_minutes} min', 20)
+    label = data.get("forecast_time_label", "Forecast")
+    text(40, 974, f'{label} {updated.strftime("%H:%M %z")} / age at generation: {age_minutes} min', 20)
     return image
 
 
