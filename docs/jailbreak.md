@@ -331,6 +331,7 @@ ghosting and stock UI overwrite manually, recording outcomes.
 Stop after one reliable manual display. M3 data/HTTP service, M4 sleep/wake and
 scheduling, and M5 mounting remain separate milestones.
 
-**Next recommended step:** complete M0's owner observations and private USB
-backup, then prepare the pinned artifact/action sheet for review. This draft does
-not mark M0 or M1 complete and does not request execution approval yet.
+**Next recommended step:** see [the package inspection](package-review.md).
+Owner observations and private USB backup have passed. Complete Speedport Smart 4
+internet-blocking preparation, unique SSH host-key planning, and the exact action
+sheet before requesting device execution approval. M0 and M1 are not yet complete.

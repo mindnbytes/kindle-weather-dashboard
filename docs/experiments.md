@@ -1,5 +1,21 @@
 # Experiments
 
+## 2026-10-15 — PC-only package compatibility inspection
+
+Downloaded and inspected the selected firmware, legacy jailbreak, universal
+hotfix 2.5.0, KUAL candidates, MRPI and USBNetwork archives on Windows.
+[Package review](package-review.md) records source URLs, hashes, inner payloads,
+metadata, system changes, proposed selections and remaining limitations.
+KindleTool's archive MD5 matched the maintainer listing; its read-only header
+inspection identified Yoshime firmware and explicit PW1 targeting in the return
+firmware, hotfix and selected touch_pw USBNetwork installer. Package scripts were
+read as text, never executed. No files were copied to the Kindle.
+
+Owner identified the router as Speedport Smart 4. Internet blocking is not yet
+configured or verified. The USBNetwork archive includes host private keys, so
+unique host-key provisioning must be reviewed before enabling Wi-Fi SSH.
+No device-modification approval requested or granted in this preparation step.
+
 ## 2026-10-15 — M0 identification and Windows USB backup
 
 Owner reconfirmed B024 / EY21 and firmware 5.6.1.1 (2689890035), enabled
