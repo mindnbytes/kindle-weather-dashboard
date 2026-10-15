@@ -16,8 +16,8 @@ Repurpose an old Amazon Kindle Paperwhite as an **offline-first, wall/fridge-mou
 | Display | 758 × 1024 pixels, grayscale, front-lit e-ink |
 | Free user storage | ~1,109 MB at inspection |
 | Connectivity | Micro-USB, Wi-Fi |
-| Jailbreak status | **Unknown / not yet performed** |
-| SSH access | **Not yet established** |
+| Jailbreak status | **Completed with hotfix; returned to 5.6.1.1** |
+| SSH access | **Windows USB/Wi-Fi verified; Mac Wi-Fi checks confirmed by owner** |
 
 Do not store the complete serial number or MAC address in project files or logs. Reconfirm model and firmware before any modification.
 
@@ -177,6 +177,10 @@ kindle-weather/
 5.3.3, legacy jailbreak, universal hotfix 2.5.0, return to 5.6.1.1, post-update
 hotfix, KUAL/MRPI and PW1 USBNetwork installation. USB public-key SSH and read-only
 shell checks passed; USB mass storage and Windows adapter settings were restored.
-Wi-Fi/Mac SSH and physical PNG display remain unverified. Consult
+Windows Wi-Fi public-key SSH also passed with USB unplugged; a bounded IPv4
+egress probe was refused while the Windows control succeeded. Owner confirmed
+Mac Wi-Fi public-key SSH and shell checks. Broader isolation and physical PNG
+display remain unverified. Owner confirmed server stop/airplane-mode teardown
+and requested a pause. Consult
 docs/experiments.md for evidence; pending steps still
 require their review gates. Mac-side fixture renderer checks passed previously.*

@@ -4,9 +4,13 @@
 downgrade, jailbreak banner, hotfix, return to 5.6.1.1, post-update hotfix,
 KUAL/MRPI and USBNetwork installer/log checks. USB public-key SSH and the four
 read-only shell commands passed; USB-test teardown and restored mass storage
-were verified. Wi-Fi and Mac
-SSH remain unverified. Owner requested USB SSH before Wi-Fi configuration. Airplane mode
-remains on. The original research status and unchecked planning list below are
+were verified. Windows Wi-Fi public-key SSH now passes with USB unplugged,
+trusted host-key verification and repeat connections. The approved offline
+validation flag resolved WLAN disconnection. One IPv4 HTTP probe was refused
+while Windows reached the same endpoint; broader isolation is unproven.
+Owner confirmed Mac Wi-Fi public-key SSH and all four shell checks, followed
+by server stop/airplane-mode teardown and a pause. Automatic SSH startup stays off.
+The original research status and unchecked planning list below are
 historical; use the latest experiment entries and stage action sheets for actual
 outcomes. Do not treat this checkpoint as approval of pending modifications.
 

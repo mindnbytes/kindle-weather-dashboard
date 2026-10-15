@@ -1,5 +1,138 @@
 # Experiments
 
+## 2026-10-15 — Wi-Fi acceptance parked; owner pauses
+
+After instructions to toggle USBNetwork off, confirm SSHD down and enable
+airplane mode, owner reported "all good" and requested a commit and pause.
+Teardown is owner-confirmed; no independent device read-back was performed.
+Speedport's Kindle-only blocker remains required for the next LAN session.
+Automatic SSH startup stays disabled. Temporary usbnet/verbose remains for
+reviewed cleanup; WIFI_NO_NET_PROBE is retained for intended offline operation.
+
+Windows and Mac Wi-Fi SSH acceptance is complete. On resume, reconfirm the
+protected LAN and manual SSH startup before reviewing FBInk compatibility and
+the exact first-image transfer/display commands. No renderer regeneration on
+Windows and no device/display changes during this pause.
+
+## 2026-10-15 — Mac Wi-Fi SSH acceptance confirmed by owner
+
+After Mac public-key authorization, owner ran the supplied Mac SSH command
+against 192.168.2.79 using the Mac's Ed25519 identity, public-key authentication,
+and a dedicated known_hosts.kindle file. Instructions required comparing the
+first-connect host fingerprint with the independently verified Kindle host key.
+Owner reported "all success" in response to the four-command check and
+uid=0(root) confirmation. Mac results are owner-reported; complete output was
+not collected by the agent. No USB reconnect or mode switch was requested.
+
+Wi-Fi SSH access from Windows and Mac has now passed its checks. Existing USB
+fallback/recovery evidence is unchanged. End-of-test server stop/airplane mode
+and temporary verbose-flag cleanup remain pending. This does not expand the
+limited egress evidence into proof of all-protocol isolation. Next milestone
+is review of compatible FBInk and exact first-image transfer/display actions;
+no installation or display command is authorized by this acceptance result.
+
+## 2026-10-15 — Approved Mac public-key authorization added
+
+Owner supplied an Ed25519 public key and approved the exact append command.
+Validated key type/length on Windows; omitted the personal email comment.
+Used the existing strict, trusted Windows Wi-Fi SSH connection with USB
+unplugged. Read the current authorized_keys into a verified private backup
+outside Git, appended one mac-client entry, and read back the complete file.
+At 14:11:51 UTC (16:11:51 Europe/Berlin), contents matched the original entries
+plus exactly one approved Mac entry. Windows public-key access still succeeds.
+No server restart or USB mode switch needed. Public key bytes and private
+backup remain outside Git. Mac-side connection acceptance remains pending.
+
+## 2026-10-15 — Windows Wi-Fi SSH verified, USB unplugged
+
+After the approved normal restart, owner confirmed the protected WLAN stays
+connected without the earlier validation error, then reported "sshd is up
+(usbms, wifi only)" after the reviewed manual toggle. USB remained unplugged;
+Windows verified Kindle storage absent and the LAN route through Wi-Fi.
+
+At 14:01:15 UTC (16:01:15 Europe/Berlin), TCP 22 at the observed private address
+192.168.2.79 was reachable. Scanned Ed25519 key bytes matched the independently
+trusted unique USB-stage host public key. A separate private Wi-Fi known_hosts
+file was used with strict checking and the existing Windows client identity.
+Public-key root authentication succeeded; `uname -a`, `id`, `mount`, `df -h`
+completed with SSH exit 0 and uid 0. Kernel reports 2.6.31-rt11-lab126.
+Full shell/client output stays outside Git in the private setup directory.
+
+Further SSH connections succeeded. Tool discovery using `command -v` failed
+because this shell lacks `command` (exit 127); this was not an SSH failure.
+Direct inspection found curl 7.33.0 and an IPv4 default route through wlan0.
+Reading /proc/net/if_inet6 failed because the file is absent; this does not
+establish router IPv6 coverage.
+
+Bounded direct-IP HTTP control to 1.1.1.1:80 from Windows returned HTTP 301
+(curl exit 0). The same probe through Kindle SSH returned connection refused,
+HTTP 000, connect time 0, curl exit 7; SSH itself exited 0. This supports blocked
+outbound access for the tested IPv4 TCP endpoint while LAN SSH works. It does
+not prove all TCP/UDP or IPv6 isolation. The owner-reconfirmed Kindle-only
+Speedport TCP/UDP 0–65535 policy remains the intended broader restriction.
+
+Automatic SSH startup remains disabled. WIFI_NO_NET_PROBE is retained for
+offline operation; temporary usbnet/verbose remains pending reviewed cleanup.
+Windows acceptance passed; Mac public-key access and end-of-test teardown are
+still pending. No firmware, root filesystem, display, or power changes made.
+
+## 2026-10-15 — Approved offline Wi-Fi/verbose flags applied
+
+Owner explicitly approved the diagnostic action sheet. Verified Kindle/FAT32
+on F:, unchanged reviewed Wi-Fi config and all four key/auth files, and absent
+usbnet/auto. Created/flushed only zero-byte WIFI_NO_NET_PROBE at USB root and
+usbnet/verbose, then verified ordinary files with exact names and zero length.
+Finished 13:52:46 UTC (15:52:46 Europe/Berlin). No root partition/config/key change,
+restart, radio enable or SSH start triggered by the agent.
+
+Next approved owner action is safe eject/unplug and one normal Settings → Restart
+with airplane mode on. After normal UI returns, join the protected WLAN and
+check retention before starting SSH once and observing verbose status. Restart,
+Wi-Fi retention and server startup outcomes remain pending.
+
+## 2026-10-15 — Wi-Fi validation failure and stopped SSH diagnosed
+
+Owner clarified that dismissing Kindle's Wi-Fi error disconnects it and removes
+its connected status in Speedport. KUAL reports "SSHD is down (usbms, wifi only)".
+The selected package's status function checks the sshd PID file, not actual
+process health; this is reported status, not a complete process diagnosis.
+No blind retoggle, reinstall or unblock performed.
+
+Researched offline-network validation flag using MobileRead primary reports/wiki.
+Independently verified in the pinned PW1 Amazon 5.6.1.1 firmware: rechecked its
+SHA-256, extracted payloads privately with KindleTool without executing scripts,
+and scanned the decompressed rootfs for WIFI_NO_NET_PROBE. Found the wifid startup
+script explicitly checks `/mnt/us/WIFI_NO_NET_PROBE` and adds `-n` to disable
+network validation when connecting to an AP. The startup-time check means a
+wifid restart is needed for this flag; a single normal menu restart is proposed
+instead of restoring USB SSH solely to issue a daemon command.
+
+Also inspected selected USBNetwork KUAL verbose/status/toggle implementation.
+Proposed zero-byte userstore flags WIFI_NO_NET_PROBE and usbnet/verbose, then
+one normal menu Restart and a controlled join/start/status check. No flags
+created and no restart performed at this preparation checkpoint. Separate
+approval requested in wifi-offline-diagnostic-action-sheet.md.
+
+## 2026-10-15 — First Wi-Fi attempt: port 22 not reachable
+
+Owner reported Kindle's Wi-Fi connection error while Speedport showed it
+connected, with observed LAN address 192.168.2.79. This may reflect an internet
+connectivity-check failure but does not prove internet blocking or stable WLAN
+association. Windows route to that address uses Wi-Fi 192.168.2.70/24.
+Bounded TCP port-22 check did not connect; no host key or SSH login was obtained.
+Do not claim Wi-Fi acceptance passed. Diagnose LAN association and USBNetwork
+server status without recopying files, reinstalling or blindly toggling again.
+
+## 2026-10-15 — Wi-Fi setup resumed; router policy reconfirmed
+
+Owner requested completing Wi-Fi SSH and explicitly reconfirmed the Speedport
+Kindle-no-internet rule: enabled, TCP/UDP 0–65535, assigned only to the previously
+privately MAC-matched Kindle entry. Owner connected Kindle USB for read-only
+preflight before the reviewed manual start/join. This confirms saved policy;
+actual Wi-Fi traffic enforcement remains untested. See wifi-ssh-check.md for
+the manual sequence and evidence/stop rules. No radio enable or server start
+was performed by the agent.
+
 ## 2026-10-15 — Owner pauses before Wi-Fi connection
 
 Owner requested saving work and pausing. Wi-Fi SSH configuration is applied and

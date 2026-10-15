@@ -6,16 +6,20 @@ is now in progress: PW1 jailbreak/hotfix, return to 5.6.1.1, KUAL/MRPI and
 USBNetwork installation have passed recorded checkpoints. A USB-only SSH smoke
 check passed with verified host key, public-key root login and read-only shell
 commands. USB storage mode and original Windows adapter DHCP/DNS settings were
-restored and verified afterward. Wi-Fi-only SSH configuration is applied and
-verified, but the owner paused before radio/server startup. Reconfirm the
-Kindle-only Speedport internet blocker on resume; Wi-Fi access/isolation and
-Mac SSH remain pending. Keep airplane mode enabled until the reviewed connection.
+restored and verified afterward. Windows Wi-Fi SSH now passes with USB unplugged,
+verified host key, public-key root login and repeat connections. The approved
+WIFI_NO_NET_PROBE flag resolved offline WLAN validation failures. A bounded
+IPv4 HTTP probe was refused on Kindle while Windows reached the same endpoint;
+broader isolation coverage remains unproven. The Kindle-only Speedport blocker
+stays enabled. Owner also confirmed Mac public-key SSH and all four shell checks.
+Owner confirmed server stop/airplane-mode teardown and paused here; SSH startup
+is manual. Next is FBInk compatibility and first-image display action review.
 Weather APIs, serving, and scheduling remain later milestones. Read the
 [project brief](kindle-weather-dashboard.md) for safety and review gates.
 
 Device evidence and approved actions are in [the experiment log](docs/experiments.md)
-and [access plan](docs/jailbreak.md). Keep the Kindle in airplane mode until
-reviewed network isolation and access setup. Renderer commands below remain
+and [access plan](docs/jailbreak.md). Use only the reviewed protected LAN for
+SSH and return to airplane mode when parked. Renderer commands below remain
 for Mac/Nix development; no regeneration is needed on Windows.
 
 ## Development with Nix

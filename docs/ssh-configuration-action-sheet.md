@@ -3,9 +3,12 @@
 Prepared 2026-10-15; updated after successful USB SSH test and teardown.
 **Configuration completed after owner requested resuming Wi-Fi setup and
 approved the exact command:** the two Wi-Fi flags are true; unchanged keys/auth
-files and absent automatic startup were verified. Radio/server remain off.
-PW1 USBNetwork and USB public-key SSH passed on 5.6.1.1. Airplane mode stays on
-and no server start is included here. Instructions below retain the reviewed
+files and absent automatic startup were verified. Subsequent separately reviewed
+manual startup and Windows Wi-Fi SSH passed with USB unplugged; owner also
+confirmed Mac public-key access and shell checks after a separately approved
+Mac public-key addition.
+See experiments.md and wifi-ssh-check.md for current outcomes. No server start
+is included in this configuration sheet. Instructions below retain the reviewed
 configuration scope, not authorization to repeat the copy.
 
 ## Prepared changes
@@ -46,7 +49,7 @@ key-authenticated root SSH connection; approval does not include starting it.
 5. Stop with USB mass storage available, airplane mode on, SSH server unstarted.
    No KUAL toggle, reboot, firmware update, Wi-Fi join or router change included.
 
-Mac public-key authorization is a later addition using only the Mac's public key.
+Mac public-key authorization was subsequently approved, applied and verified.
 Neither Windows nor Mac client private keys may be copied to the Kindle.
 No global Windows SSH settings need changing.
 

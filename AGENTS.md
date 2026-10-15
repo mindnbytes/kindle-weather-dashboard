@@ -5,10 +5,14 @@ implementation and evidence. Use `nix develop` for development.
 Current scope: owner-directed Windows M1 device setup. Downgrade, jailbreak,
 hotfix, return to 5.6.1.1, KUAL/MRPI and PW1 USBNetwork installation have passed
 their recorded checkpoints. USB public-key SSH smoke check and teardown passed;
-USB mass-storage mode is restored. Wi-Fi-only SSH config is applied/verified,
-but radio and server have not been started. Owner paused before reconfirming
-the Speedport Kindle-only internet blocker. On resume, reconfirm that rule and
-review deliberate Wi-Fi connection/isolation, then test Windows and Mac access.
-Keep airplane mode on. Device modification requires explicit approval of exact
+Wi-Fi public-key SSH from Windows now passes with USB unplugged, including
+host-key verification and repeat connections. Owner reconfirmed Speedport's
+Kindle-only internet blocker; a bounded IPv4 HTTP probe was refused while its
+Windows control succeeded. Broader isolation coverage is unproven. Owner also
+confirmed Mac Wi-Fi public-key SSH and all four shell checks. Owner confirmed
+server stop/airplane-mode teardown and paused here. Offline WLAN uses the approved
+WIFI_NO_NET_PROBE flag; temporary usbnet/verbose remains pending cleanup.
+Keep the blocker enabled and use airplane mode when parked. Automatic SSH
+startup is disabled. Device modification requires explicit approval of exact
 commands; consult the action sheets and latest experiment entries. Renderer
 development remains on Mac/Nix; do not regenerate it on Windows.
