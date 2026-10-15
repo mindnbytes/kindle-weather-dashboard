@@ -1,8 +1,12 @@
 # Prepare manual Wi-Fi SSH through USB storage
 
 Prepared 2026-10-15; updated after successful USB SSH test and teardown.
-**Wi-Fi changes remain pending approval.** PW1 USBNetwork and USB public-key SSH
-passed on 5.6.1.1. Airplane mode stays on and no server start is included here.
+**Configuration completed after owner requested resuming Wi-Fi setup and
+approved the exact command:** the two Wi-Fi flags are true; unchanged keys/auth
+files and absent automatic startup were verified. Radio/server remain off.
+PW1 USBNetwork and USB public-key SSH passed on 5.6.1.1. Airplane mode stays on
+and no server start is included here. Instructions below retain the reviewed
+configuration scope, not authorization to repeat the copy.
 
 ## Prepared changes
 
@@ -14,7 +18,7 @@ or regenerate the working keys. No private-key contents are written into logs/ch
 
 | File under `usbnet/etc/` | Selected change |
 | --- | --- |
-| `config` | Pending: change only USE_WIFI and USE_WIFI_SSHD_ONLY from false to true; USE_OPENSSH is already true. Preserve other settings and LF endings. |
+| `config` | Applied: changed only USE_WIFI and USE_WIFI_SSHD_ONLY from false to true; USE_OPENSSH was already true. Other settings and LF endings preserved. |
 | `sshd_config` | Already applied/verified through USB: unique HostKey, explicit authorized_keys path, public-key-only root authentication. Preserve unchanged. |
 | `authorized_keys` | Already applied/verified: existing Windows id_ed25519 public key only. Preserve unchanged; Mac public key is a later addition. |
 | `ssh_host_ed25519_key_pw1` | Unique server private key already installed; preserve unchanged. |

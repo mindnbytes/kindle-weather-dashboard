@@ -6,8 +6,10 @@ is now in progress: PW1 jailbreak/hotfix, return to 5.6.1.1, KUAL/MRPI and
 USBNetwork installation have passed recorded checkpoints. A USB-only SSH smoke
 check passed with verified host key, public-key root login and read-only shell
 commands. USB storage mode and original Windows adapter DHCP/DNS settings were
-restored and verified afterward. Wi-Fi configuration/access and Mac SSH remain
-pending.
+restored and verified afterward. Wi-Fi-only SSH configuration is applied and
+verified, but the owner paused before radio/server startup. Reconfirm the
+Kindle-only Speedport internet blocker on resume; Wi-Fi access/isolation and
+Mac SSH remain pending. Keep airplane mode enabled until the reviewed connection.
 Weather APIs, serving, and scheduling remain later milestones. Read the
 [project brief](kindle-weather-dashboard.md) for safety and review gates.
 

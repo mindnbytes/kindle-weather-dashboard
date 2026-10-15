@@ -1,5 +1,34 @@
 # Experiments
 
+## 2026-10-15 — Owner pauses before Wi-Fi connection
+
+Owner requested saving work and pausing. Wi-Fi SSH configuration is applied and
+verified, but radio/server were not started. Keep airplane mode on and automatic
+SSH startup disabled. USB mass storage remains the last verified device mode.
+No Wi-Fi SSH success or traffic-isolation result is claimed.
+
+Resume by reconfirming Speedport rule Kindle-no-internet is enabled, TCP/UDP
+0–65535, and assigned only to the privately MAC-matched Kindle entry. Then review
+the deliberate Wi-Fi connection/manual SSH startup and isolation verification
+steps before enabling the radio. Preserve existing working keys and private
+known-hosts evidence. Windows and Mac Wi-Fi SSH checks remain outstanding.
+
+## 2026-10-15 — Wi-Fi SSH config applied; radio/server still off
+
+Owner requested resuming Wi-Fi SSH setup. Confirmed all five USB-stage file
+hashes still matched the successful baseline and auto-start was absent. Prepared
+Wi-Fi config differed only in USE_WIFI and USE_WIFI_SSHD_ONLY. After command
+approval, privately backed up/hash-verified the working USB-only config, copied
+the Wi-Fi config once, flushed and verified size/SHA-256
+`3635b0c931450239dd57bacc2dd8fa36ddef298c8d6ead727f265d89caa26c67`.
+All four key/auth files remained unchanged. Current flags USE_WIFI=true,
+USE_WIFI_SSHD_ONLY=true, USE_OPENSSH=true; auto-start absent. Finished 12:29:44 UTC
+(14:29:44 Europe/Berlin). No radio enable, server start or mode toggle triggered.
+
+Windows Wi-Fi LAN address observed as 192.168.2.70/24. Saved Speedport Kindle-only
+blocker must be reconfirmed before deliberate networking; traffic isolation,
+Wi-Fi host-key/auth checks and Mac access remain pending. Airplane mode stays on.
+
 ## 2026-10-15 — USB SSH teardown verified
 
 Owner restored the adapter settings, toggled USBNetwork off and reported USB
