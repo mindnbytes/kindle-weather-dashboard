@@ -1,5 +1,123 @@
 # Experiments
 
+## 2026-10-15 — HTTP display accepted; weekend pause checkpoint
+
+Owner confirmed the HTTP-delivered fixture image renders correctly. After
+approximately one minute the stock UI's top line becomes visible. Timing is an
+owner estimate, not an instrumented measurement; trigger remains unestablished.
+Earlier touch-through behavior and accidental backend selection remain relevant.
+The manual Mac serve → Kindle HTTP pull → verified bytes → physical display
+checkpoint is accepted. This does not establish persistent dashboard mode.
+
+Owner requested commit and plans to park the Kindle before returning on the
+weekend. Mac HTTP server is already stopped. Owner will stop SSH and enable
+airplane mode; latest device teardown is intended, not yet confirmed. Keep the
+router blocker enabled and automatic SSH startup disabled.
+
+Next session: reconfirm parked/network state and original trusted OpenSSH host
+key, then research a reversible PW1/5.6.1.1 screen-ownership/touch-handling approach
+and prepare exact commands plus recovery/exit procedure for owner review. Test
+manual image retention and lock/suspend behavior before scheduling or automatic
+wake. Keep invented API-shaped data for these experiments; real-location weather
+and NixOS deployment remain later acceptance steps. No unattended changes approved.
+
+## 2026-10-15 — Approved Kindle HTTP pull and single draw succeeded
+
+Owner approved http-image-action-sheet.md. Using the restored OpenSSH backend
+and original strict trusted host key, destination absence checks and the single
+bounded curl fetch exited zero. Mac server logged GET /weather.png from
+192.168.2.79 with HTTP 200. Read the downloaded /mnt/us/weather-http-m3.png back
+over SSH with pipefail: SHA-256 matched the served/local fixture PNG exactly,
+`75ce723f35717273c226ab8678b13767fe8c8934463abb6eeab8cee7cb166992`.
+
+Executed `/mnt/us/libkh/bin/fbink -f -w -i /mnt/us/weather-http-m3.png` once;
+exit zero. FBInk detected PW1 0x24/Celeste/Yoshime, 758x1024 Y8 framebuffer and
+reported drawing at origin without scaling, refresh enabled. Physical acceptance
+of this HTTP-delivered image awaits owner confirmation. Known stock UI overwrite
+and active underlying touch remain unresolved; no UI/power changes performed.
+
+Stopped the temporary Mac HTTP server with Ctrl-C after the attempt; process
+exited zero. User-storage HTTP PNG remains; existing M2 PNG is unchanged. No
+automatic fetching, scheduling, new binaries, firmware or further configuration
+changes. Latest Kindle SSH-stop/airplane-mode teardown remains owner-pending.
+This proves one manual protected-LAN HTTP pull, byte verification and successful
+draw command, not unattended dashboard operation or real-location weather.
+
+## 2026-10-15 — OpenSSH restored; HTTP test prepared
+
+After owner reported manual SSH startup, strict connection using unchanged Mac
+known_hosts.kindle passed again. Firmware reports Kindle 5.6.1.1. Installed curl
+help confirms timeout/failure/size/output/proxy-bypass options. `command -v`
+is unsupported by this shell; no downloader-presence claim relies on it.
+The proposed /mnt/us/weather-http-m3.png is absent. No remote writes or draws.
+
+Started temporary Mac Nix HTTP server on LAN IPv4 192.168.2.52:8000; bounded Mac
+control request succeeded and matched runtime/weather.png SHA-256
+`75ce723f35717273c226ab8678b13767fe8c8934463abb6eeab8cee7cb166992`.
+Prepared http-image-action-sheet.md for exact device fetch/hash-read-back/single
+draw approval. Server remains running awaiting that decision; Kindle HTTP fetch
+is not yet executed. No UI/touch/power-management or further config changes.
+
+## 2026-10-15 — Approved OpenSSH backend restored over USB
+
+Owner explained the backend was accidentally selected while touches operated
+through the rendered PNG, and explicitly requested restoration by the agent.
+Backed up current config privately in a mode-0700 Mac temporary directory and
+prepared a byte-exact single-setting replacement. Applied through mounted USB
+storage, changing only USE_OPENSSH="false" to "true", with original-byte and
+support-file preconditions, flush/fsync and exact read-back verification.
+Original config SHA-256:
+`9824bcd0cf3870c5b3feec66dbb753c2ab48045e2d626d94b83611bd05fa3b6a`.
+Restored config SHA-256:
+`3635b0c931450239dd57bacc2dd8fa36ddef298c8d6ead727f265d89caa26c67`.
+
+sshd_config, authorized_keys and unique host public key hashes unchanged;
+USE_WIFI/USE_WIFI_SSHD_ONLY remain true and usbnet/auto remains absent. No private
+key contents read, known_hosts change, server startup, radio enable, eject or draw
+performed by agent. Device remains USB-mounted at this checkpoint; owner had
+reported SSH stopped/airplane mode before connection. Next: safe eject/unplug,
+protected WLAN/manual SSH startup, then strict host-key reconnection. HTTP test
+still awaits downloader inspection and exact-command review. Touch interference
+has now caused an owner-confirmed configuration change, reinforcing the M4 gate.
+
+## 2026-10-15 — USB inspection identifies SSH backend drift
+
+Owner confirmed Kindle still uses .79, stopped USBNetwork, enabled airplane
+mode and connected USB mass storage to Mac. Read-only inspection of
+/Volumes/Kindle found USE_WIFI=true, USE_WIFI_SSHD_ONLY=true but
+USE_OPENSSH=false (recorded working setup used true). usbnet/auto remains absent.
+The OpenSSH config still explicitly selects ssh_host_ed25519_key_pw1 and
+public-key-only authentication. Its .pub fingerprint exactly matches the Mac's
+unchanged trusted entry:
+`SHA256:V9/bg66IGq2HyBpjEZHrqCnQENZXzxcG1JVqHRmh6aA`.
+No private-key contents read and no device files changed.
+
+Inspected installed usbnetwork/libkh5: false selects /usr/bin/dropbear; true
+selects /usr/sbin/sshd. Inspected KUAL menu and handler: "SSHD: Use OpenSSH"
+calls use_openssh, which edits USE_OPENSSH to true. Thus backend configuration
+drift is verified; its trigger and the rejected key's exact provenance remain
+unestablished. No claim that a PNG draw changed SSH configuration. Do not modify
+known_hosts or regenerate/replace keys. Restoring the previously reviewed
+OpenSSH selection requires owner approval; HTTP test remains paused.
+
+## 2026-10-15 — M3 LAN preflight stopped on host-key mismatch
+
+Owner requested the manual Kindle HTTP retrieval checkpoint. Mac en0 currently
+has LAN IPv4 192.168.2.52. Existing runtime/weather.png is a 758x1024 grayscale
+PNG with SHA-256
+`75ce723f35717273c226ab8678b13767fe8c8934463abb6eeab8cee7cb166992`.
+
+Attempted read-only SSH tool/firmware/path inspection at the previously trusted
+192.168.2.79 using the existing Mac identity, dedicated known_hosts.kindle and
+strict Ed25519 host-key checking. SSH rejected the connection because the
+presented host key differed from the trusted entry; presented fingerprint:
+`SHA256:L1PEfxfu1pOG8ZC+o/YrSzK3/1v1ZpAAlxIuLD2s0TA`.
+Exit status 255; no remote commands executed. No known_hosts/key/config changes,
+image fetch/draw or HTTP server startup performed. Do not replace the trusted
+key or disable verification. Reconfirm the Kindle's current IP through the
+previously MAC-matched router entry and, if still the same address, verify the
+host key through the trusted USB/private provisioning evidence before resuming.
+
 ## 2026-10-15 — M3 Mac pipeline; invented API-shaped fixture
 
 Implemented a standard-library Open-Meteo adapter and one-shot updater plus a

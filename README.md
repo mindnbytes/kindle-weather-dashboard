@@ -25,7 +25,14 @@ weather acquisition, caching and local HTTP delivery on Mac/Nix; NixOS deploymen
 and unattended refresh come later. The Mac M3 pipeline now supports an invented
 Open-Meteo-shaped fixture, validated normalization/cache, atomic PNG publication
 and loopback HTTP delivery. Live acquisition has had one non-personal smoke
-check; real-location and Kindle LAN retrieval acceptance remain pending.
+check. One manual Kindle LAN HTTP fetch, exact SHA-256 read-back and FBInk draw
+now pass, and owner accepted physical rendering. The stock UI's top line returns
+after approximately one minute; underlying touch remains active.
+The temporary Mac server is stopped. Real-location acceptance remains pending.
+Owner requested a weekend pause and will park the Kindle; latest device teardown
+is not yet confirmed. Next is a reviewed, reversible screen-ownership/touch and
+lock/suspend retention experiment on PW1 5.6.1.1, before scheduling or automatic
+wake. Continue using invented data for that work.
 Read the
 [project brief](kindle-weather-dashboard.md) for safety and review gates.
 

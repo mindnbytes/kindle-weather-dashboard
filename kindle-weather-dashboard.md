@@ -109,7 +109,7 @@ fbink -i /mnt/us/weather.png
 - [x] Cache last known forecast. Define failure behavior for API/network outages (retain previous PNG and timestamps; nonzero update exit, 503 before first success).
 - [x] Render current temperature, feels-like/precipitation, six hourly columns, three future days, conditions-valid and image-generation timestamps.
 - [x] Export a grayscale PNG, atomically replacing the served file (`tmp` + rename).
-- [x] Serve locally from the Mac and test loopback retrieval independently. Kindle LAN retrieval and later NixOS endpoint migration remain pending.
+- [x] Serve locally from the Mac and test retrieval independently: loopback and one Kindle LAN HTTP fetch pass, including exact SHA-256 read-back, successful FBInk draw and owner physical acceptance. Stock UI's top line returns after about one minute. Later NixOS endpoint migration remains pending.
 - [ ] Only for deployment, integrate with existing NixOS configuration; use a dedicated `systemd` service/timer rather than cron if scheduling on the server. Bind only to the appropriate LAN address, and open only the required firewall port (if any).
 
 ### M4 — Unattended periodic refresh
@@ -186,6 +186,10 @@ Owner confirmed server stop/airplane-mode teardown
 and requested a pause. Subsequently, owner approved Mac PNG transfer and a
 single FBInk draw; SHA-256 read-back matched and owner accepted the physical
 image. M2's first end-to-end display is complete. Latest session teardown is
-requested but not yet confirmed; next is M3 on Mac/Nix. Consult
+requested but not yet confirmed. The Mac M3 fixture pipeline and a manual Kindle
+HTTP pull/hash verification/display also passed, with owner physical acceptance.
+Stock UI's top line returns after about one minute. Owner requested a weekend
+pause; next is a reviewed screen-ownership/touch and retention experiment before
+automation. Real-location and NixOS deployment acceptance remain pending. Consult
 docs/experiments.md for evidence; pending steps still
 require their review gates. Mac-side fixture renderer checks passed previously.*

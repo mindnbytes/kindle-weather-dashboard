@@ -19,13 +19,21 @@ server stop/airplane-mode teardown for the earlier SSH session. A later approved
 Mac SCP transfer, SHA-256 read-back and single FBInk 1.25.0 draw succeeded;
 owner confirmed the physical image looked good and requested commit/pause.
 This latest session's teardown is requested but not yet confirmed. On resume,
-reconfirm device/network state. Next is M3 weather acquisition/cache/local HTTP
-on Mac/Nix; no automation or power-management changes yet. M3 Mac pipeline now
+reconfirm device/network state. Next is a reversible PW1/5.6.1.1 screen-ownership,
+touch-handling and lock/suspend retention proposal with exact commands and exit/
+recovery steps for approval; no scheduling or power changes yet. M3 Mac pipeline now
 implements API-shaped invented-fixture acquisition, normalization/cache, atomic
 PNG publication and loopback-only-by-default HTTP. Owner chose invented data
 for now; real location comes later through ignored local config. Read
-docs/weather-pipeline.md. Real-location and Kindle LAN retrieval acceptance are
-pending; do not infer full M3/deployment completion from local tests.
+docs/weather-pipeline.md. Real-location weather acceptance remains pending.
+One approved manual Kindle HTTP fetch, hash read-back
+and FBInk draw now pass; owner accepted physical rendering and reports the stock
+UI's top line reappears after approximately one minute. Owner requested commit
+and a weekend pause and will park the Kindle; latest teardown remains unconfirmed.
+Temporary Mac HTTP server is stopped. OpenSSH backend was restored
+after owner-confirmed accidental selection of Dropbear through the rendered
+image; original strict host-key check passes again. Do not infer full
+M3/deployment completion or persistent display from this test.
 Offline WLAN uses the approved
 WIFI_NO_NET_PROBE flag; temporary usbnet/verbose remains pending cleanup.
 Keep the blocker enabled and use airplane mode when parked. Automatic SSH
