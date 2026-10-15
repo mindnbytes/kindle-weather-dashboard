@@ -27,7 +27,7 @@ Do not store the complete serial number or MAC address in project files or logs.
 - Preserve stock firmware and recovery options. Make a backup of accessible user files before starting.
 - Keep the Kindle's software as small as possible; develop weather API access, layout, fonts, and PNG rendering on the Mac, then deploy them to the NixOS mini home server.
 - **Local network only** for the first version: no public endpoints, cloud dependencies on Kindle, telemetry, or third-party services on the device. The NixOS home server may retrieve forecast data from a selected public weather API.
-- Use SSH public keys when possible; do not expose SSH to the internet. Prefer USB SSH during setup; enable Wi-Fi SSH only on trusted LAN and as needed.
+- Use SSH public keys; do not expose SSH to the internet. After jailbreak/hotfix and return to 5.6.1.1, prefer Wi-Fi SSH on a trusted LAN with Kindle internet access blocked before connection. Keep USB mass-storage access for preparation/recovery and USB SSH as an optional fallback. Device setup uses Windows; renderer development remains on Mac/Nix. See [the access plan](docs/jailbreak.md).
 - Avoid permanently charging an old lithium battery unattended; inspect battery health, swelling, and runtime. Use a safe mount/holder rather than attaching magnets directly to the device.
 - Out of scope: Amazon Kindle library, DRM, KOReader, full Linux distribution replacement, interactive GUI, custom PCB.
 
@@ -48,7 +48,7 @@ Open-Meteo (or another weather source)
           e-ink retains image
 ```
 
-**Initial transfer:** USB-network SSH/SCP is sufficient. Do not require HTTP, automated fetching, or a wake scheduler for milestone 1. Later, prefer **Kindle-pull over HTTP** rather than server-initiated SCP, because the Kindle may be asleep between updates.
+**Initial transfer:** prefer manual SCP over verified Wi-Fi SSH, directly from the Mac or from Windows. USB-network SSH/SCP is a fallback. Do not require HTTP, automated fetching, or a wake scheduler for milestone 1. Later, prefer **Kindle-pull over HTTP** rather than server-initiated SCP, because the Kindle may be asleep between updates.
 
 **Rendering:** [FBInk](https://github.com/NiLuJe/FBInk) writes PNG images directly to the Kindle framebuffer. Use a **device-compatible** build and verify its flags with `fbink --help`. The upstream documented form is `fbink -i /path/to/image.png`; rendering, rotation, screen clearing, and refresh behavior must be tested on this PW1.
 
@@ -74,7 +74,7 @@ Open-Meteo (or another weather source)
 - [ ] Select and validate a **PW1 5.6.1.1-specific** jailbreak path; do not substitute PW2 instructions.
 - [ ] Only after approval, execute the documented steps one at a time; record actual outcomes.
 - [ ] Install suitable KUAL/MRPI/USBNetwork components if required by the chosen method.
-- [ ] Bring up SSH over USB first. USBNetwork documentation suggests Kindle USB-side address `192.168.15.244` (host configuration is OS-dependent).
+- [ ] After jailbreak/hotfix and return to 5.6.1.1, configure USBNetwork for public-key Wi-Fi SSH. Verify Kindle internet blocking before enabling Wi-Fi; demonstrate access from Windows and the Mac with USB unplugged. Keep USB mass-storage recovery available; USB SSH is an optional fallback, not a prerequisite.
 - [ ] Demonstrate `uname -a`, `id`, `mount`, `df -h` from shell. Avoid writing to root filesystem.
 - [ ] Back up any device-specific configuration before changing it.
 
@@ -96,8 +96,8 @@ Open-Meteo (or another weather source)
 **Illustrative commands only; do not run before SSH/FBInk verification:**
 
 ```sh
-# On Mac; USBNetwork address is illustrative (configure macOS USB network interface first)
-scp weather.png root@192.168.15.244:/mnt/us/weather.png
+# On Mac, after Wi-Fi SSH verification; replace KINDLE_LAN_IP with the observed address
+scp weather.png root@KINDLE_LAN_IP:/mnt/us/weather.png
 
 # On Kindle (once a compatible FBInk binary is installed)
 fbink -i /mnt/us/weather.png
