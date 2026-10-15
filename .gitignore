@@ -4,3 +4,5 @@ __pycache__/
 .direnv/
 /weather.png
 /result
+/example.png
+/.DS_Store
