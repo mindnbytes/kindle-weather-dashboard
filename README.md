@@ -1,7 +1,8 @@
 # Kindle weather dashboard
 
 An offline fixture renderer for a Kindle Paperwhite 1 display. **M1 console
-access and M2's first end-to-end PNG display are complete.** PW1 jailbreak/hotfix,
+access and M2's first end-to-end PNG display are complete; M0 preparation is also
+complete.** PW1 jailbreak/hotfix,
 return to 5.6.1.1, KUAL/MRPI and
 USBNetwork installation have passed recorded checkpoints. A USB-only SSH smoke
 check passed with verified host key, public-key root login and read-only shell
@@ -14,7 +15,10 @@ broader isolation coverage remains unproven. The Kindle-only Speedport blocker
 stays enabled. Owner also confirmed Mac public-key SSH and all four shell checks.
 The existing hotfix-supplied FBInk 1.25.0 displayed the Mac fixture PNG after
 SCP transfer and matching SHA-256 read-back. Owner confirmed it rendered and
-looked good. The approved procedure is in the [first-image action sheet](docs/first-image-action-sheet.md).
+looked perfect, but later observed the original UI returning and touches
+operating the UI through the image. The PNG draw does not establish persistent
+dashboard mode. Screen ownership, touch handling and lock/suspend retention are
+explicit M4 gates. The approved procedure is in the [first-image action sheet](docs/first-image-action-sheet.md).
 Owner requested a pause; this session's server stop/airplane-mode teardown has
 been requested but not yet confirmed. SSH startup remains manual. Next is M3:
 weather acquisition, caching and local HTTP delivery on Mac/Nix; NixOS deployment
@@ -76,8 +80,9 @@ same font on Linux; no project font download or installation is needed.
 The smoke test runs the CLI twice from another working directory, verifies PNG
 format/dimensions/grayscale, checks that content bands contain ink, and compares
 the output bytes. Visual inspection complements these checks. Owner accepted the
-first physical display; long-term ghosting, UI overwrite and sleep/wake behavior
-remain unmeasured.
+first physical display; stock UI overwrite and active underlying touch handling
+are observed limitations. Overwrite timing, long-term ghosting and sleep/wake
+behavior remain unmeasured.
 
 **Renderer review point:** the generated image was inspected on the Mac before
 owner-approved Kindle setup began, then transferred and displayed successfully

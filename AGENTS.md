@@ -2,7 +2,12 @@ Read `kindle-weather-dashboard.md` before working here. It defines device safety
 milestones, and review gates. Read `README.md` and `docs/experiments.md` for current
 implementation and evidence. Use `nix develop` for development.
 
-Current checkpoint: M1 console access and M2 first PNG display complete. Downgrade, jailbreak,
+Current checkpoint: M0 preparation, M1 console access and M2 first PNG display
+complete. Owner subsequently observed stock UI overwrite and touches navigating
+the underlying UI; persistent dashboard mode is not established. M4 must address
+screen ownership, touch handling and lock/suspend retention with separately
+approved device commands. Do not assume locking immediately preserves the PNG.
+Downgrade, jailbreak,
 hotfix, return to 5.6.1.1, KUAL/MRPI and PW1 USBNetwork installation have passed
 their recorded checkpoints. USB public-key SSH smoke check and teardown passed;
 Wi-Fi public-key SSH from Windows now passes with USB unplugged, including

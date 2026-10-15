@@ -1,5 +1,22 @@
 # Experiments
 
+## 2026-10-15 — UI overwrite and touch behavior; milestone reconciliation
+
+Owner clarified that the image renders perfectly, but the original UI later
+appears and touches can operate through the image. Time to overwrite and exact
+trigger were not measured. This accepts M2's manual display slice while showing
+that persistent dashboard mode is unresolved. No device change or retry made.
+
+Added M4 acceptance gates for screen ownership, touch handling, safe exit/recovery
+and image retention across lock/suspend. Immediate locking is an owner-suggested
+candidate to investigate, not a verified fix or approved power-management command.
+M3 weather/cache/local HTTP development can proceed independently on Mac/Nix.
+
+At owner's request, reconciled M0/M1 checklists with recorded preparation,
+backup, stepwise approvals, installation and SSH evidence. Both are complete;
+battery runtime and broader internet isolation remain unproven. Latest session
+SSH stop/airplane-mode teardown still awaits confirmation.
+
 ## 2026-10-15 — First physical display accepted; commit and pause
 
 After the single approved draw, owner confirmed "yes, it rendered, all good"

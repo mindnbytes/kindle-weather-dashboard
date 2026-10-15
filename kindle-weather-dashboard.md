@@ -62,21 +62,21 @@ Open-Meteo (or another weather source)
 
 ### M0 — Confirm device and prepare safely
 
-- [ ] Reconfirm PW1 / B024 / EY21 and firmware 5.6.1.1.
-- [ ] Enable airplane mode until a deliberate networking decision; prevent unexpected OTA updates.
-- [ ] Back up user-visible storage over USB.
-- [ ] Check battery condition and charge reliability.
-- [ ] Read the exact PW1 firmware-specific jailbreak instructions **in full** and verify download provenance/checksums where available.
-- [ ] Produce a risk/rollback report, and **stop for human approval** before firmware changes.
+- [x] Reconfirm PW1 / B024 / EY21 and firmware 5.6.1.1.
+- [x] Enable airplane mode until a deliberate networking decision; review OTA precautions. Retain protected-LAN policy and airplane mode when parked.
+- [x] Back up user-visible storage over USB (797 files, SHA-256 verified; owner spot-check passed).
+- [x] Check battery condition and charge reliability (owner reported fully charged and no visible concerns; long-term runtime unmeasured).
+- [x] Read the exact PW1 firmware-specific jailbreak instructions **in full** and verify download provenance/checksums where available.
+- [x] Produce a risk/rollback report, and **stop for human approval** before firmware changes (recorded action sheets and stepwise approvals).
 
 ### M1 — Obtain console access (human-approved device modification)
 
-- [ ] Select and validate a **PW1 5.6.1.1-specific** jailbreak path; do not substitute PW2 instructions.
-- [ ] Only after approval, execute the documented steps one at a time; record actual outcomes.
-- [ ] Install suitable KUAL/MRPI/USBNetwork components if required by the chosen method.
-- [ ] After jailbreak/hotfix and return to 5.6.1.1, configure USBNetwork for public-key Wi-Fi SSH. Verify Kindle internet blocking before enabling Wi-Fi; demonstrate access from Windows and the Mac with USB unplugged. Keep USB mass-storage recovery available; USB SSH is an optional fallback, not a prerequisite.
-- [ ] Demonstrate `uname -a`, `id`, `mount`, `df -h` from shell. Avoid writing to root filesystem.
-- [ ] Back up any device-specific configuration before changing it.
+- [x] Select and validate a **PW1 5.6.1.1-specific** jailbreak path; do not substitute PW2 instructions.
+- [x] Only after approval, execute the documented steps one at a time; record actual outcomes.
+- [x] Install suitable KUAL/MRPI/USBNetwork components if required by the chosen method.
+- [x] After jailbreak/hotfix and return to 5.6.1.1, configure public-key Wi-Fi SSH; demonstrate Windows and Mac access with USB unplugged. Router blocker confirmed before joining; subsequent bounded IPv4 HTTP probe refused while Windows control succeeded. Broader isolation remains unproven. USB SSH and mass-storage restoration also passed.
+- [x] Demonstrate `uname -a`, `id`, `mount`, `df -h` from shell. Avoid writing to root filesystem during checks.
+- [x] Back up device-specific configuration before changing it (private verified backups recorded).
 
 **Important:** There is a community-reported route for **PW1 B024 on 5.6.1.1** involving a temporary downgrade to 5.3.3, legacy jailbreak, a compatible hotfix, then return to 5.6.1.1. A report from October 2026 documents differences from older instructions. Treat this as a **research lead, not a preauthorized procedure**. Verify current package compatibility and each step with the owner before execution:
 
@@ -90,7 +90,7 @@ Open-Meteo (or another weather source)
 - [x] Verify `file weather.png` and dimensions 758x1024.
 - [x] Install/test a compatible FBInk binary without altering system partitions unnecessarily (existing hotfix-supplied FBInk 1.25.0 used).
 - [x] Copy PNG to the Kindle's user storage (`/mnt/us/weather-m2.png`), verify SHA-256 read-back.
-- [x] Render on the Kindle; owner accepted first physical appearance. Long-term ghosting and UI overwrite timing remain unmeasured.
+- [x] Render on the Kindle; owner reports perfect appearance. Stock UI later overwrites it and touch still operates the underlying UI; elapsed time unmeasured. Persistent display is a later acceptance gate.
 - [x] Document the successful manual redraw command in `docs/first-image-action-sheet.md`; repeated execution not yet tested.
 
 **Illustrative commands only; do not run before SSH/FBInk verification:**
@@ -114,6 +114,8 @@ fbink -i /mnt/us/weather.png
 
 ### M4 — Unattended periodic refresh
 
+- [ ] Resolve screen ownership and touch handling: owner observed stock UI returning and touches operating through the PNG. Review a reversible PW1-compatible approach, including a clear exit/recovery path; device commands require separate approval.
+- [ ] Test whether normal lock/suspend preserves the dashboard or replaces it. Do not assume immediate locking solves UI overwrite. Dashboard must remain visible and accidental touches must not navigate the stock UI during unattended use.
 - [ ] Verify whether the PW1 firmware and hardware can perform **RTC wake from suspend** reliably; do not assume another Kindle model's approach applies.
 - [ ] Investigate stock power manager/screensaver and what overwrites the framebuffer on lock/suspend.
 - [ ] Test manual sleep → wake → fetch → render first; then automate.
