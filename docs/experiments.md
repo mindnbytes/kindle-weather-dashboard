@@ -1,5 +1,26 @@
 # Experiments
 
+## 2026-10-15 — M0 identification and Windows USB backup
+
+Owner reconfirmed B024 / EY21 and firmware 5.6.1.1 (2689890035), enabled
+airplane mode, and reported a fully charged battery with no visible concerns.
+The first USB cable did not expose storage; another cable worked. Windows
+identified drive F: as Kindle, FAT32, with a Healthy volume status.
+
+Copied accessible storage, including hidden/system files, to a new private
+Documents/KindleBackups folder outside Git using Robocopy with `/E /COPY:DAT
+/DCOPY:DAT /XJ /R:0 /W:0`. Exit code 1 indicated successful copying: 248
+directories and 797 files, with zero failures. Subsequent recursive SHA-256
+comparison verified all 797 files (289,726,327 bytes); source and backup file
+counts matched. Copy log and verification summary are stored beside the private
+backup. No source files were modified. Owner subsequently opened representative
+backed-up files and confirmed they looked good.
+
+Top-level inspection found no obvious jailbreak/launcher files or update BINs;
+this does not establish whether the device has previously been jailbroken.
+No firmware changes or package installations performed. Package selection,
+compatibility review, and exact-action approval remain pending.
+
 ## 2026-10-15 — M2 Mac-side fixture image
 
 Scope: renderer only. No Kindle connection, device modification, API request,
