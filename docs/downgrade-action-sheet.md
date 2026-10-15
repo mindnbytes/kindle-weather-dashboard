@@ -1,6 +1,10 @@
 # First device stage: PW1 5.6.1.1 to 5.3.3
 
-Prepared 2026-10-15. **Not executed or approved.** This sheet defines the first
+Prepared 2026-10-15. **Completed:** owner reported 5.3.3 (1812030015) after the
+approved copy, connected wait and manual restart, with no reported errors.
+See `experiments.md` for observed results. The instructions below are retained
+as the historical action sheet, not authorization to repeat the downgrade.
+This sheet defines the first
 modification only, followed by a mandatory checkpoint. Later jailbreak, hotfix,
 return firmware and SSH stages require their own reviewed actions. Outstanding
 M0 preparation in `jailbreak.md` must be resolved before executing this sheet.

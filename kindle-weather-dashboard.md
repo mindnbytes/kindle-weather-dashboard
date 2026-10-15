@@ -173,4 +173,8 @@ kindle-weather/
 - [FBInk CLI reference](https://github.com/NiLuJe/FBInk/blob/master/CLI.md)
 - [Open-Meteo](https://open-meteo.com/)
 
-*Status: planning only; no modification of device performed.*
+*Status, 2026-10-15: owner-approved Windows setup has completed downgrade to
+5.3.3, legacy jailbreak, universal hotfix 2.5.0, return to 5.6.1.1, post-update
+hotfix, KUAL/MRPI and PW1 USBNetwork installation. SSH and physical PNG display
+remain unverified. Consult docs/experiments.md for evidence; pending steps still
+require their review gates. Mac-side fixture renderer checks passed previously.*

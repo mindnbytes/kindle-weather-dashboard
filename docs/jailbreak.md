@@ -1,5 +1,13 @@
 # PW1 jailbreak and first display — review draft
 
+**Current checkpoint, 2026-10-15:** owner-approved device work has passed the
+downgrade, jailbreak banner, hotfix, return to 5.6.1.1, post-update hotfix,
+KUAL/MRPI and USBNetwork installer/log checks. SSH is not yet verified. Owner
+requested a USB SSH check before the pending Wi-Fi configuration. Airplane mode
+remains on. The original research status and unchecked planning list below are
+historical; use the latest experiment entries and stage action sheets for actual
+outcomes. Do not treat this checkpoint as approval of pending modifications.
+
 Researched: **2026-10-15**. Status: **planning only; not ready for execution**.
 No device was accessed, no installation packages were downloaded, and no device
 steps below were performed. This document is not approval to execute them.

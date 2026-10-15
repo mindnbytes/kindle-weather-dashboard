@@ -1,9 +1,17 @@
 # Kindle weather dashboard
 
-An offline fixture renderer for a Kindle Paperwhite 1 display. Current scope is
-the **Mac-side half of M2**: produce and inspect a PNG. Device access, weather
-APIs, serving, and scheduling are later milestones. Read the
+An offline fixture renderer for a Kindle Paperwhite 1 display. The **Mac-side
+half of M2** has passed its renderer checks. Owner-directed **Windows M1 setup**
+is now in progress: PW1 jailbreak/hotfix, return to 5.6.1.1, KUAL/MRPI and
+USBNetwork installation have passed recorded checkpoints. SSH access is not yet
+verified; next is a reviewed USB SSH smoke check before Wi-Fi configuration.
+Weather APIs, serving, and scheduling remain later milestones. Read the
 [project brief](kindle-weather-dashboard.md) for safety and review gates.
+
+Device evidence and approved actions are in [the experiment log](docs/experiments.md)
+and [access plan](docs/jailbreak.md). Keep the Kindle in airplane mode until
+reviewed network isolation and access setup. Renderer commands below remain
+for Mac/Nix development; no regeneration is needed on Windows.
 
 ## Development with Nix
 
@@ -58,5 +66,6 @@ the output bytes. Visual inspection complements these checks. E-ink contrast,
 orientation, ghosting, and UI overwrite behavior still require later device
 testing.
 
-**Review point:** inspect the generated image before proceeding to Kindle-side
-work. This repository does not establish console access or modify the device.
+**Renderer review point:** the generated image was inspected on the Mac before
+owner-approved Kindle setup began. Physical display testing remains pending;
+the renderer itself does not establish console access or modify the device.
