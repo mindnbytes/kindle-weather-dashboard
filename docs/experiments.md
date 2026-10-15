@@ -1,5 +1,66 @@
 # Experiments
 
+## 2026-10-15 — First physical display accepted; commit and pause
+
+After the single approved draw, owner confirmed "yes, it rendered, all good"
+and requested committing the current stage before a pause. M1 console access
+and M2's manual Mac fixture PNG → transfer → physical PW1 display slice are
+complete. The exact manual redraw command is recorded in first-image-action-sheet.md;
+repeat draws were not run in this session. Detailed retention, long-term ghosting,
+UI overwrite timing and sleep/wake behavior remain unmeasured.
+
+Owner reminded to stop SSH through KUAL, confirm SSHD down and enable airplane
+mode while keeping the router blocker enabled. Latest teardown is not yet
+confirmed. Next milestone is M3 on Mac/Nix: weather data, cache/failure behavior
+and local HTTP delivery. Deployment and unattended power/refresh remain later.
+
+## 2026-10-15 — Approved first PNG transfer and FBInk draw
+
+Owner approved the exact first-image action sheet. Destination absence check
+passed. Copied the existing Mac weather.png once with legacy SCP to
+`/mnt/us/weather-m2.png`; copy exited zero. Read back the complete remote file
+over SSH with pipefail; SHA-256 matched the Nix-verified local PNG:
+`61b53b2ce823552e888b5a52da5c30628758db4de5956dae36f67604163eb561`
+(29,287 bytes locally, PNG 758x1024 mode L).
+
+Executed once: `/mnt/us/libkh/bin/fbink -f -w -i /mnt/us/weather-m2.png`.
+Exit status zero. FBInk detected Kindle PaperWhite model 0x24, Celeste/Yoshime,
+Pearl screen quirks, 758x1024 8bpp framebuffer, Y8 pixel format and 212 dpi.
+Reported image display at origin without scaling, AUTO waveform, refresh enabled.
+Reported framebuffer rotation is 3/270 degrees; actual visual orientation still
+requires owner observation and must not be inferred from that internal value.
+
+No new binary installation, root remount, stock UI/service stop, configuration
+or power-management change performed. User-storage PNG remains. Physical image
+appearance, contrast, clipping, ghosting and UI overwrite behavior await owner
+confirmation; M2 physical acceptance is not yet complete. SSH teardown/airplane
+mode has not been reported for this session.
+
+## 2026-10-15 — Existing FBInk help check passed from Mac
+
+Owner confirmed the same IP and supplied the working Mac SSH command. Retried
+with explicit HostKeyAlgorithms=ssh-ed25519, existing Mac identity/dedicated
+known_hosts, strict host-key checking, BatchMode and password authentication off.
+Connection succeeded; the cause of the preceding timeout is not established.
+`/mnt/us/libkh/bin/fbink` is executable, 1,386,360 bytes; `--help` reports
+FBInk 1.25.0 for Kindle, Image=Yes, PNG support, image selection `-i`, flashing
+refresh `-f`, and wait `-w`. Both `/mnt/us/weather.png` and
+`/mnt/us/weather-m2.png` are absent. Overall shell status 1 came from the expected
+final missing-path check, not failure of FBInk help. No image transfer, draw,
+framebuffer initialization test or device configuration change performed.
+
+## 2026-10-15 — Mac FBInk preflight connection attempt
+
+Owner reported SSH up and authorized agent-run read-only FBInk checks. Used the
+Mac's existing Ed25519 identity and dedicated known_hosts.kindle with strict
+host-key checking, public-key-only authentication and a 10-second connection
+timeout at its recorded address, 192.168.2.79. Sandbox denied the initial network
+connection; the approved host-level attempt timed out connecting to TCP 22.
+No SSH session was established and no remote commands or device changes ran.
+Current address and Mac/Kindle LAN reachability need confirmation before retry.
+The existing FBInk binary and physical display remain unverified; see
+[preflight](fbink-preflight.md).
+
 ## 2026-10-15 — Wi-Fi acceptance parked; owner pauses
 
 After instructions to toggle USBNetwork off, confirm SSHD down and enable

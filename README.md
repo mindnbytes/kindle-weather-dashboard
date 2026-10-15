@@ -1,8 +1,8 @@
 # Kindle weather dashboard
 
-An offline fixture renderer for a Kindle Paperwhite 1 display. The **Mac-side
-half of M2** has passed its renderer checks. Owner-directed **Windows M1 setup**
-is now in progress: PW1 jailbreak/hotfix, return to 5.6.1.1, KUAL/MRPI and
+An offline fixture renderer for a Kindle Paperwhite 1 display. **M1 console
+access and M2's first end-to-end PNG display are complete.** PW1 jailbreak/hotfix,
+return to 5.6.1.1, KUAL/MRPI and
 USBNetwork installation have passed recorded checkpoints. A USB-only SSH smoke
 check passed with verified host key, public-key root login and read-only shell
 commands. USB storage mode and original Windows adapter DHCP/DNS settings were
@@ -12,9 +12,13 @@ WIFI_NO_NET_PROBE flag resolved offline WLAN validation failures. A bounded
 IPv4 HTTP probe was refused on Kindle while Windows reached the same endpoint;
 broader isolation coverage remains unproven. The Kindle-only Speedport blocker
 stays enabled. Owner also confirmed Mac public-key SSH and all four shell checks.
-Owner confirmed server stop/airplane-mode teardown and paused here; SSH startup
-is manual. Next is FBInk compatibility and first-image display action review.
-Weather APIs, serving, and scheduling remain later milestones. Read the
+The existing hotfix-supplied FBInk 1.25.0 displayed the Mac fixture PNG after
+SCP transfer and matching SHA-256 read-back. Owner confirmed it rendered and
+looked good. The approved procedure is in the [first-image action sheet](docs/first-image-action-sheet.md).
+Owner requested a pause; this session's server stop/airplane-mode teardown has
+been requested but not yet confirmed. SSH startup remains manual. Next is M3:
+weather acquisition, caching and local HTTP delivery on Mac/Nix; NixOS deployment
+and unattended refresh come later. Read the
 [project brief](kindle-weather-dashboard.md) for safety and review gates.
 
 Device evidence and approved actions are in [the experiment log](docs/experiments.md)
@@ -71,10 +75,11 @@ same font on Linux; no project font download or installation is needed.
 
 The smoke test runs the CLI twice from another working directory, verifies PNG
 format/dimensions/grayscale, checks that content bands contain ink, and compares
-the output bytes. Visual inspection complements these checks. E-ink contrast,
-orientation, ghosting, and UI overwrite behavior still require later device
-testing.
+the output bytes. Visual inspection complements these checks. Owner accepted the
+first physical display; long-term ghosting, UI overwrite and sleep/wake behavior
+remain unmeasured.
 
 **Renderer review point:** the generated image was inspected on the Mac before
-owner-approved Kindle setup began. Physical display testing remains pending;
-the renderer itself does not establish console access or modify the device.
+owner-approved Kindle setup began, then transferred and displayed successfully
+on the PW1. This establishes the manual fixture-to-screen slice, not automated
+weather delivery or persistence through sleep.

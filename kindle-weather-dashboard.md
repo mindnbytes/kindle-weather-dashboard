@@ -86,12 +86,12 @@ Open-Meteo (or another weather source)
 
 ### M2 — First end-to-end PNG (core MVP)
 
-- [ ] Produce `weather.png` on the Mac from **static fixture data**, with no API requirement.
-- [ ] Verify `file weather.png` and dimensions 758x1024.
-- [ ] Install/test a compatible FBInk binary without altering system partitions unnecessarily.
-- [ ] Copy PNG to the Kindle's user storage, e.g. `/mnt/us/weather.png`.
-- [ ] Render on the Kindle, inspect orientation, scaling, contrast, ghosting, and whether the Kindle UI overwrites it.
-- [ ] Document a reliable one-command/manual redraw procedure.
+- [x] Produce `weather.png` on the Mac from **static fixture data**, with no API requirement.
+- [x] Verify `file weather.png` and dimensions 758x1024.
+- [x] Install/test a compatible FBInk binary without altering system partitions unnecessarily (existing hotfix-supplied FBInk 1.25.0 used).
+- [x] Copy PNG to the Kindle's user storage (`/mnt/us/weather-m2.png`), verify SHA-256 read-back.
+- [x] Render on the Kindle; owner accepted first physical appearance. Long-term ghosting and UI overwrite timing remain unmeasured.
+- [x] Document the successful manual redraw command in `docs/first-image-action-sheet.md`; repeated execution not yet tested.
 
 **Illustrative commands only; do not run before SSH/FBInk verification:**
 
@@ -179,8 +179,11 @@ hotfix, KUAL/MRPI and PW1 USBNetwork installation. USB public-key SSH and read-o
 shell checks passed; USB mass storage and Windows adapter settings were restored.
 Windows Wi-Fi public-key SSH also passed with USB unplugged; a bounded IPv4
 egress probe was refused while the Windows control succeeded. Owner confirmed
-Mac Wi-Fi public-key SSH and shell checks. Broader isolation and physical PNG
-display remain unverified. Owner confirmed server stop/airplane-mode teardown
-and requested a pause. Consult
+Mac Wi-Fi public-key SSH and shell checks. Broader isolation remains unverified.
+Owner confirmed server stop/airplane-mode teardown
+and requested a pause. Subsequently, owner approved Mac PNG transfer and a
+single FBInk draw; SHA-256 read-back matched and owner accepted the physical
+image. M2's first end-to-end display is complete. Latest session teardown is
+requested but not yet confirmed; next is M3 on Mac/Nix. Consult
 docs/experiments.md for evidence; pending steps still
 require their review gates. Mac-side fixture renderer checks passed previously.*
