@@ -38,7 +38,9 @@ python -c 'from PIL import Image; im = Image.open("weather.png"); print(im.forma
 
 Expected: `PNG (758, 1024) L`, an 8-bit grayscale portrait image. On macOS, open
 `weather.png` in Preview and inspect at actual size for legible text, margins,
-and an unclipped hourly trend and three-day forecast.
+and an unclipped hourly strip and three-day forecast. Each hourly column shows
+temperature, a monochrome condition icon, rain probability, and time. Fixture
+condition values are `sunny`, `cloudy`, `partly_cloudy`, or `rain`.
 
 The fixture describes **invented sample weather**, with no personal coordinates.
 It deliberately provides both forecast and generation timestamps with UTC

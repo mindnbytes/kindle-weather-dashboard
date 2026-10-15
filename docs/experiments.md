@@ -36,3 +36,19 @@ or condition strings have no automatic wrapping. No evidence yet of Kindle
 rendering, physical readability, ghosting, or screen retention.
 
 Next action: owner reviews `weather.png`. Stop here before Kindle-side work.
+
+## 2026-10-15 — Hourly forecast strip
+
+Replaced the hourly line chart with six aligned columns following the owner's
+`example.png`: temperature, monochrome condition icon, rain probability, and
+time. Updated the invented fixture to consecutive hours (09:00–14:00) with
+cloudy, partly cloudy, sunny, and rain examples. Icons are drawn with Pillow;
+no assets, fonts, or dependencies were added.
+
+Regenerated using `nix develop -c python server/render.py`; both existing tests
+passed again, and `git diff --check` passed. Output remains 758x1024 grayscale.
+Visually inspected the final PNG: columns align and labels/icons do not overlap.
+Final SHA-256:
+`61b53b2ce823552e888b5a52da5c30628758db4de5956dae36f67604163eb561`.
+
+Next action: owner reviews the revised image. Changes are not committed yet.

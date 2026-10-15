@@ -4,12 +4,12 @@
   "generated_at": "2026-10-15T08:30:00+02:00",
   "current": {"temperature_c": 12, "feels_like_c": 10, "condition": "Partly cloudy", "precipitation_probability_pct": 20},
   "hourly": [
-    {"time": "09:00", "temperature_c": 12},
-    {"time": "11:00", "temperature_c": 14},
-    {"time": "13:00", "temperature_c": 16},
-    {"time": "15:00", "temperature_c": 17},
-    {"time": "17:00", "temperature_c": 15},
-    {"time": "19:00", "temperature_c": 12}
+    {"time": "09:00", "temperature_c": 12, "condition": "cloudy", "precipitation_probability_pct": 20},
+    {"time": "10:00", "temperature_c": 13, "condition": "cloudy", "precipitation_probability_pct": 15},
+    {"time": "11:00", "temperature_c": 14, "condition": "partly_cloudy", "precipitation_probability_pct": 10},
+    {"time": "12:00", "temperature_c": 15, "condition": "sunny", "precipitation_probability_pct": 5},
+    {"time": "13:00", "temperature_c": 16, "condition": "partly_cloudy", "precipitation_probability_pct": 10},
+    {"time": "14:00", "temperature_c": 16, "condition": "rain", "precipitation_probability_pct": 45}
   ],
   "daily": [
     {"day": "Fri 16", "condition": "Light rain", "low_c": 9, "high_c": 14},

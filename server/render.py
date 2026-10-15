@@ -3,13 +3,40 @@
 import argparse
 from datetime import datetime
 import json
+import math
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 
 SIZE = (758, 1024)
 DEFAULT_FIXTURE = Path(__file__).parent / "fixtures" / "weather.json"
+
+
+def weather_icon(draw, x, y, condition):
+    """Draw small monochrome symbols without external assets or emoji fonts."""
+    if condition not in {"sunny", "cloudy", "partly_cloudy", "rain"}:
+        raise ValueError(f"Unsupported hourly condition: {condition}")
+    if condition in {"sunny", "partly_cloudy"}:
+        sx, sy = (x, y) if condition == "sunny" else (x - 11, y - 9)
+        for index in range(8):
+            angle = index * math.pi / 4
+            draw.line((sx + 20 * math.cos(angle), sy + 20 * math.sin(angle),
+                       sx + 26 * math.cos(angle), sy + 26 * math.sin(angle)),
+                      fill=0, width=3)
+        draw.ellipse((sx - 14, sy - 14, sx + 14, sy + 14), fill=255, outline=0, width=3)
+    if condition != "sunny":
+        # Union the shapes before outlining so there are no internal seams.
+        cloud = Image.new("L", (80, 80), 0)
+        shape = ImageDraw.Draw(cloud)
+        shape.ellipse((10, 27, 36, 53), fill=255)
+        shape.ellipse((28, 13, 60, 48), fill=255)
+        shape.rounded_rectangle((14, 35, 66, 53), radius=9, fill=255)
+        draw.bitmap((x - 38, y - 30), cloud.filter(ImageFilter.MaxFilter(7)), fill=0)
+        draw.bitmap((x - 38, y - 30), cloud, fill=255)
+    if condition == "rain":
+        for dx in (-14, 1, 16):
+            draw.line((x + dx, y + 29, x + dx - 5, y + 37), fill=0, width=3)
 
 
 def render(data):
@@ -46,16 +73,13 @@ def render(data):
     text(44, 411, f'Chance of rain {current["precipitation_probability_pct"]:g}%', 27)
     rule(465)
 
-    text(40, 486, "TODAY / TEMPERATURE", 23)
+    text(40, 486, "HOURLY FORECAST / C", 23)
     hours = data["hourly"]
-    values = [hour["temperature_c"] for hour in hours]
-    low, high = min(values) - 2, max(values) + 2
-    points = [(70 + i * 123, 646 - (value - low) / (high - low) * 92)
-              for i, value in enumerate(values)]
-    draw.line(points, fill=0, width=4)
-    for hour, (x, y) in zip(hours, points):
-        draw.ellipse((x - 5, y - 5, x + 5, y + 5), fill=0)
-        text(x, y - 39, f'{hour["temperature_c"]:g}', 25, "mt")
+    for index, hour in enumerate(hours):
+        x = 91 + index * 115
+        text(x, 530, f'{hour["temperature_c"]:g}°', 30, "mt")
+        weather_icon(draw, x, 591, hour["condition"])
+        text(x, 636, f'{hour["precipitation_probability_pct"]:g}%', 25, "mt")
         text(x, 666, hour["time"], 21, "mt")
     rule(712)
 
