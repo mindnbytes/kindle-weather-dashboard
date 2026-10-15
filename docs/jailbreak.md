@@ -4,6 +4,14 @@ Researched: **2026-10-15**. Status: **planning only; not ready for execution**.
 No device was accessed, no installation packages were downloaded, and no device
 steps below were performed. This document is not approval to execute them.
 
+**Preparation update, 2026-10-15:** owner reconfirmed identifiers/firmware,
+airplane mode and battery condition. Windows USB storage backup completed and
+all 797 files passed SHA-256 comparison; owner checked representative files.
+See `docs/experiments.md`. Initial candidate packages have now been downloaded
+to a private PC-only setup folder (not the Kindle); pinned details follow.
+The original status above describes the research draft. Device modification
+remains unapproved; compatibility and final action-sheet review are pending.
+
 Target from the project brief: Paperwhite 1 (2012), Wi-Fi, serial prefix B024,
 back model EY21, firmware 5.6.1.1 (2689890035). These are prior observations;
 reconfirm them at M0. Never record complete serial numbers or MAC addresses here.
@@ -132,6 +140,42 @@ publisher checksum/signature plus verification result. Several snapshot entries
 list checksum `N/A`; a self-computed hash pins bytes but does not establish
 authenticity. Missing provenance or compatibility remains a stop condition.
 Do not use firmware mirrors merely to fill an unavailable official download.
+
+### PC-only downloads verified 2026-10-15
+
+Downloaded directly over HTTPS from the following sources; nothing copied to
+the Kindle. Local SHA-256 pins bytes but is not independent publisher verification
+unless explicitly stated below. Firmware model metadata still needs inspection.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `update_kindle_5.3.3.bin` | 171618740 | `bc1a869f0cd9cf33caa75b4b7434c1b08a875bdf1f6fb2692e6323fc0a7453d0` |
+| `update_kindle_5.6.1.1.bin` | 217523739 | `6be62d30df26894b08083dbc55d23774756710c3a44c9a1d0075dd02d12090c9` |
+| `kindle-jailbreak-1.16.N-r19426.tar.xz` | 1056936 | `7bad4e414fbe1b9a2bc3fd23b4dcb88fa625ddd506942c472efcb114f1428f68` |
+| `Update_hotfix_universal.bin` (2.5.0) | 3743762 | `94d5c05254b70c4905392515411f620168ac238db62c7dcbc48a1e31d5de6c59` |
+
+Exact sources:
+
+- https://s3.amazonaws.com/G7G_FirmwareUpdates_WebDownloads/update_kindle_5.3.3.bin
+- https://s3.amazonaws.com/G7G_FirmwareUpdates_WebDownloads/update_kindle_5.6.1.1.bin
+- https://storage.gra.cloud.ovh.net/v1/AUTH_2ac4bfee353948ec8ea7fd1710574097/mr-public/Touch/kindle-jailbreak-1.16.N-r19426.tar.xz
+- https://github.com/KindleModding/Hotfix/releases/download/2.5.0/Update_hotfix_universal.bin
+
+Hotfix digest matched the GitHub release asset API's published SHA-256. The
+2.5.0 README explicitly includes sh_integration and KPM and acknowledges incomplete
+compatibility testing. Download does not resolve PW1/5.3.3 compatibility or approve
+those additional changes. Source/install behavior and launcher selection remain
+under review.
+
+Read the legacy archive's `README.txt`, `README`, and `OLD_README` in full.
+The current instructions identify PW1 and firmware 5.0.x–5.4.4.2, and select
+the contents of `kindle-5.4-jailbreak.zip`. Archive listing confirms that inner
+ZIP exists; extraction, inner-payload hashes and destination review remain pending.
+No historical README recovery/retry action is authorized by this inspection.
+
+Windows build reported by the registry: 26300.9550, DisplayVersion 26H2.
+Registry ProductName says Windows 10 Education; marketing version not independently
+confirmed. Windows OpenSSH `ssh.exe` and `scp.exe`, and Windows `tar.exe`, are available.
 
 For the later verification step, PowerShell can compute a hash without executing
 the payload (replace the illustrative path with the selected local file):
