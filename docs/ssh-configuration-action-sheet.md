@@ -1,22 +1,24 @@
 # Prepare manual Wi-Fi SSH through USB storage
 
-Prepared 2026-10-15. **Pending approval; prepared on Windows only.**
-PW1 USBNetwork installation has passed owner and log checks on 5.6.1.1.
-Airplane mode stays on and no server start is included in this stage.
+Prepared 2026-10-15; updated after successful USB SSH test and teardown.
+**Wi-Fi changes remain pending approval.** PW1 USBNetwork and USB public-key SSH
+passed on 5.6.1.1. Airplane mode stays on and no server start is included here.
 
 ## Prepared changes
 
 Original `usbnet/etc/config` and `sshd_config` are backed up privately on Windows,
-with matching SHA-256. New files are prepared under the private dated KindleSetup
-ssh-prep directory, not Git. No private-key contents are written into logs/chat.
+with matching SHA-256. The subsequent approved USB test installed key-only
+OpenSSH support and unique server keys, all verified. Prepared Wi-Fi config is
+under the private dated KindleSetup ssh-prep directory, not Git. Do not replace
+or regenerate the working keys. No private-key contents are written into logs/chat.
 
 | File under `usbnet/etc/` | Selected change |
 | --- | --- |
-| `config` | Change only USE_WIFI, USE_WIFI_SSHD_ONLY and USE_OPENSSH from false to true; preserve other settings and LF endings. |
-| `sshd_config` | Use only `/mnt/us/usbnet/etc/ssh_host_ed25519_key_pw1` as HostKey; explicit AuthorizedKeysFile `/mnt/us/usbnet/etc/authorized_keys`; PubkeyAuthentication yes; PasswordAuthentication no; KbdInteractiveAuthentication no; replace PermitRootLogin yes with prohibit-password. Preserve other existing settings. |
-| `authorized_keys` | One existing Windows id_ed25519 public key in OpenSSH format, with a generic comment. No client private key copied. |
-| `ssh_host_ed25519_key_pw1` | Newly generated unique Ed25519 server private key; dedicated filename preserves the package's existing host keys. |
-| `ssh_host_ed25519_key_pw1.pub` | Matching host public key; its fingerprint is retained privately on Windows for first-connection verification. |
+| `config` | Pending: change only USE_WIFI and USE_WIFI_SSHD_ONLY from false to true; USE_OPENSSH is already true. Preserve other settings and LF endings. |
+| `sshd_config` | Already applied/verified through USB: unique HostKey, explicit authorized_keys path, public-key-only root authentication. Preserve unchanged. |
+| `authorized_keys` | Already applied/verified: existing Windows id_ed25519 public key only. Preserve unchanged; Mac public key is a later addition. |
+| `ssh_host_ed25519_key_pw1` | Unique server private key already installed; preserve unchanged. |
+| `ssh_host_ed25519_key_pw1.pub` | Matching host public key already verified against the USB connection; preserve unchanged. |
 
 The explicit HostKey selects the unique key instead of bundled default host keys.
 USE_WIFI_SSHD_ONLY keeps USB mass storage selected when the server is later
@@ -26,19 +28,17 @@ key-authenticated root SSH connection; approval does not include starting it.
 ## Exact actions after approval
 
 1. Confirm Kindle USB volume and airplane mode. Verify usbnet/auto absent,
-   installed config and sshd_config still match the private originals, and no
-   existing authorized_keys or selected unique-host-key destination would be
-   overwritten. Stop on any mismatch/collision; inspect rather than retry.
-2. Recheck prepared Windows files: LF-only configs/authorized_keys, one valid
-   selected public key, matching generated host keypair/fingerprint. Build a
-   private source byte-count/SHA-256 inventory before device writes.
-3. Copy only the five files above to `F:\usbnet\etc\` (after volume confirmation)
-   with literal paths. The two config replacements are explicitly approved;
-   the other three destinations must be absent before copying. Preserve old
-   configs in the verified private PC backup.
-4. Flush each file and verify destination sizes and SHA-256 against the private
-   source inventory, without printing private keys. Re-read only the selected
-   configuration directives. Confirm usbnet/auto remains absent.
+   current config matches the privately recorded USB-only baseline and the
+   four key/auth files match the successful USB-test inventory. Stop on mismatch.
+2. Back up the current working USB-only config privately and verify its hash.
+   Compare prepared Wi-Fi config against it: only the two flags above may differ;
+   preserve LF endings and record the prepared source hash.
+3. After separate Wi-Fi-stage approval, copy only prepared `config` to
+   `F:\usbnet\etc\config` with a literal path after volume confirmation. Do not
+   recopy keys, authorized_keys or sshd_config. This sheet remains unapproved;
+   approval given to the prior USB-only setup does not enable Wi-Fi.
+4. Flush and verify config size/hash, re-read the selected directives, and
+   verify other four files unchanged. Confirm usbnet/auto remains absent.
 5. Stop with USB mass storage available, airplane mode on, SSH server unstarted.
    No KUAL toggle, reboot, firmware update, Wi-Fi join or router change included.
 

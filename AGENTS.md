@@ -4,7 +4,9 @@ implementation and evidence. Use `nix develop` for development.
 
 Current scope: owner-directed Windows M1 device setup. Downgrade, jailbreak,
 hotfix, return to 5.6.1.1, KUAL/MRPI and PW1 USBNetwork installation have passed
-their recorded checkpoints. Next: reviewed USB SSH smoke check before Wi-Fi setup.
+their recorded checkpoints. USB public-key SSH smoke check and teardown passed;
+USB mass-storage mode is restored. Next: review Wi-Fi setup and isolation
+separately, then verify Wi-Fi SSH from Windows and Mac.
 Keep airplane mode on. Device modification requires explicit approval of exact
 commands; consult the action sheets and latest experiment entries. Renderer
 development remains on Mac/Nix; do not regenerate it on Windows.

@@ -2,8 +2,10 @@
 
 **Current checkpoint, 2026-10-15:** owner-approved device work has passed the
 downgrade, jailbreak banner, hotfix, return to 5.6.1.1, post-update hotfix,
-KUAL/MRPI and USBNetwork installer/log checks. SSH is not yet verified. Owner
-requested a USB SSH check before the pending Wi-Fi configuration. Airplane mode
+KUAL/MRPI and USBNetwork installer/log checks. USB public-key SSH and the four
+read-only shell commands passed; USB-test teardown and restored mass storage
+were verified. Wi-Fi and Mac
+SSH remain unverified. Owner requested USB SSH before Wi-Fi configuration. Airplane mode
 remains on. The original research status and unchecked planning list below are
 historical; use the latest experiment entries and stage action sheets for actual
 outcomes. Do not treat this checkpoint as approval of pending modifications.

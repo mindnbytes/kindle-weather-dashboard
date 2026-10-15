@@ -1,5 +1,143 @@
 # Experiments
 
+## 2026-10-15 — USB SSH teardown verified
+
+Owner restored the adapter settings, toggled USBNetwork off and reported USB
+Drive Mode. Read-only verification confirmed F: as Kindle/FAT32, no present
+VID_0525/PID_A4A2 networking gadget, recorded USB interface DHCP enabled and
+static DNS empty. Device config remains USE_WIFI=false, USE_WIFI_SSHD_ONLY=false,
+USE_OPENSSH=true; usbnet/auto is absent. The successful SSH session had already
+exited normally. USB test and teardown are complete.
+
+Unique host key, public authorized key and USB-only OpenSSH config remain as the
+reviewed baseline. No Wi-Fi configuration applied or access tested. Next milestone:
+review the two remaining Wi-Fi config flags and controlled network-isolation
+verification, then verify Wi-Fi SSH from Windows and Mac. Physical PNG display
+remains pending. Logs, keys and backups remain outside Git.
+
+## 2026-10-15 — USB public-key SSH smoke check passed
+
+Owner configured only Ethernet 2 IPv4 manually after the non-admin command was
+denied. Verified 192.168.15.201/24 in Preferred state, no default USB gateway,
+and no IPv4 DNS servers. Kindle TCP port 22 at 192.168.15.244 was reachable.
+Scanned its Ed25519 host key and compared the complete public-key bytes with
+the independently generated host public key: exact match. Only after this match,
+saved a dedicated private known_hosts file on Windows.
+
+Windows OpenSSH connected with explicit id_ed25519 identity, strict host-key
+checking, dedicated known_hosts, BatchMode and password/keyboard-interactive
+authentication disabled. Client log explicitly confirmed publickey authentication.
+Remote command chain `uname -a && id && mount && df -h` exited zero, uid=0(root)
+confirmed, kernel Linux 2.6.31-rt11-lab126. Complete shell output and client log
+are saved privately outside Git, without copying any client private key.
+Finished at 12:18:49 UTC (14:18:49 Europe/Berlin); SSH session exited normally.
+
+USB SSH smoke test passed. Teardown remains pending: restore original Windows
+USB adapter DHCP/DNS configuration, unplug, toggle USBNetwork off on Kindle,
+reconnect and confirm USB mass storage returns. Wi-Fi access, network isolation,
+Mac SSH and physical PNG display remain unverified. Airplane mode stays on.
+
+## 2026-10-15 — RNDIS adapter working; IPv4 change needs Windows administrator
+
+Owner reported successful driver installation. Verified correlated gadget is
+USB Ethernet/RNDIS Gadget, Net class, Status OK, problem code zero, Acer provider,
+oem10.inf and USB_RNDIS service. Matching network adapter is Ethernet 2, index 49,
+Status Up. Privately saved original adapter/IP/DNS/routes and device association.
+Original IPv4 was DHCP enabled with APIPA 169.254/16 and no default route;
+original DNS configuration is retained in the private baseline.
+
+Rechecked no conflicting non-default route on another interface. Attempt to set
+DHCP disabled on only index 49 failed immediately with Windows "Access is denied"
+despite host sandbox approval. No subsequent New-NetIPAddress or DNS command ran;
+no successful adapter configuration or port/SSH test is claimed. Owner needs
+administrator-authorized IPv4 configuration on this adapter. Normal Wi-Fi/LAN
+settings remain unchanged, and Kindle airplane mode remains required.
+
+## 2026-10-15 — Matching signed RNDIS package prepared
+
+Inbox rndiscmp.inf selection was rejected by Windows; user's subsequent model
+picker remained limited to serial drivers. Researched a specific alternative
+from Microsoft Update Catalog matching USB\VID_0525&PID_A4A2, including AMD64.
+Downloaded/extracted only the reviewed Acer INF/catalog package from Microsoft's
+download host. Catalog signature is Valid; SignTool confirmed the exact INF's
+catalog membership under kernel signing policy, zero warnings/errors. Required
+inbox binaries exist. Full provenance and hashes are in
+[Windows driver review](windows-rndis-driver-review.md).
+
+No driver installation has been performed by the agent. Proposed next action
+is user-operated Update driver → Browse folder on the correlated COM3 gadget,
+allowing Windows to evaluate the exact hardware match rather than forcing an
+unrelated inbox serial/network model. Runtime result remains pending.
+
+## 2026-10-15 — Kindle gadget serial binding confirmed
+
+On reconnect, exactly one correlated VID_0525/PID_A4A2 gadget appeared as USB
+Serial Device (COM3), Ports class, Status OK. Hardware revision 0325; compatible
+IDs advertise USB Class_02/SubClass_02/Prot_FF. Driver binding is Microsoft's
+usbser.inf, service usbser, version 10.0.26100.9278, problem code zero.
+No Ethernet adapter is created, so USB SSH cannot be attempted yet.
+
+Read installed Microsoft netrndis.inf and rndiscmp.inf. The latter supplies the
+Remote NDIS Compatible Device model (Net class, version 10.0.26100.1). Consulted
+Microsoft's RNDIS documentation and MobileRead's Windows USBNetwork guidance.
+The generic RNDIS INF does not automatically match the reported compatible IDs;
+this is not proof of successful runtime compatibility. A specific built-in
+driver selection must be reviewed, with no downloads, signature bypass or
+changes to unrelated devices. No driver or adapter settings changed yet.
+
+## 2026-10-15 — USB serial device correlated with Kindle cable
+
+After owner unplugged only the Kindle USB cable, present-device inspection
+found zero VID_0525/PID_A4A2 devices and zero COM3 devices. This disappearance
+correlates the observed COM3 gadget with the Kindle connection. No USB network
+device was present. No mode toggle, driver change, network setting or SSH
+attempt performed. Next: reconnect without toggling and inspect compatible IDs
+and current driver binding before proposing a specific driver correction.
+
+## 2026-10-15 — USB networking attempt: Windows driver diagnosis
+
+Owner performed the reviewed USBNetwork toggle and reconnected USB, reporting
+no Kindle errors. Read-only Windows inspection found F: no longer available,
+but no new network adapter or USB network-class PnP device. Present-device
+inspection found `USB Serial Device (COM3)`, hardware VID_0525/PID_A4A2,
+Ports class, Status OK, problem code zero. This suggests a USB gadget associated
+with a serial driver, but Kindle association still requires unplug/replug
+correlation; do not identify it conclusively from VID/PID alone.
+
+No Windows adapter IP, driver, firewall or network-sharing setting changed.
+No SSH connection attempted. Stop at device/driver diagnosis per action sheet;
+no arbitrary driver or device removal is authorized. Airplane mode remains on.
+
+## 2026-10-15 — Approved USB-only SSH configuration applied
+
+Owner explicitly approved the USB SSH action sheet. Reconfirmed Kindle/FAT32
+on F:, unchanged original config hashes against the private backup, absent
+authorized_keys/unique-host-key destinations and absent auto-start file.
+Rechecked all five prepared source files against the private inventory, then
+copied/flushed and SHA-256/size verified every destination in usbnet/etc.
+No client private key was copied. Config now has KINDLE_IP=192.168.15.244,
+USE_WIFI=false, USE_WIFI_SSHD_ONLY=false, USE_OPENSSH=true; usbnet/auto is absent.
+Finished at 11:55:11 UTC (13:55:11 Europe/Berlin).
+
+No SSH server start or USB-mode switch triggered by the agent. Next owner action:
+safe eject/unplug, KUAL USBNetwork toggle once, reconnect USB. Adapter recognition,
+Windows USB IPv4 configuration and SSH authentication remain untested.
+
+## 2026-10-15 — Owner requests USB SSH before Wi-Fi setup
+
+Saved completed milestones in commit 322ae96 and pending Wi-Fi SSH configuration
+in 0fcc75b, leaving a clean checkpoint before USB-test preparation. Owner requests
+a USB-only SSH smoke check first; pending Wi-Fi files were not staged.
+
+Read-only preflight found no Windows non-default IPv4 route matching the candidate
+192.168.15.244 address and no Kindle USB Ethernet adapter while still in mass
+storage. Installed USBNetwork flags remain false; no authorized_keys, unique
+selected server-key destination or auto-start file present. Prepared a separate
+PC-only config keeping both Wi-Fi flags false and selecting OpenSSH, plus a
+private five-file source inventory using the existing prepared key-only setup.
+No device config writes, USB-mode switch or server startup yet. See
+[USB SSH action sheet](usb-ssh-action-sheet.md) for exact proposed test/teardown.
+
 ## 2026-10-15 — USBNetwork installation verified; SSH files prepared on PC
 
 Owner reported MRPI success, UI restart and no errors. Read-only USB inspection

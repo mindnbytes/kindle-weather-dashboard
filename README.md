@@ -3,8 +3,11 @@
 An offline fixture renderer for a Kindle Paperwhite 1 display. The **Mac-side
 half of M2** has passed its renderer checks. Owner-directed **Windows M1 setup**
 is now in progress: PW1 jailbreak/hotfix, return to 5.6.1.1, KUAL/MRPI and
-USBNetwork installation have passed recorded checkpoints. SSH access is not yet
-verified; next is a reviewed USB SSH smoke check before Wi-Fi configuration.
+USBNetwork installation have passed recorded checkpoints. A USB-only SSH smoke
+check passed with verified host key, public-key root login and read-only shell
+commands. USB storage mode and original Windows adapter DHCP/DNS settings were
+restored and verified afterward. Wi-Fi configuration/access and Mac SSH remain
+pending.
 Weather APIs, serving, and scheduling remain later milestones. Read the
 [project brief](kindle-weather-dashboard.md) for safety and review gates.
 
