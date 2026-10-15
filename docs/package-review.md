@@ -117,9 +117,10 @@ No host keys or client keys were generated or staged in this inspection.
 
 ## Remaining preparation
 
-- Router is Speedport Smart 4 (owner confirmation); Wi-Fi name alone was not
-  used as a model identifier. Internet blocking with LAN peer access remains
-  to be prepared and verified before Kindle Wi-Fi is enabled.
+- Router is Speedport Smart 4 (owner confirmation). Owner saved enabled
+  `Kindle-no-internet` port blocker, TCP and UDP `0-65535`, assigned only to
+  the privately MAC-matched Kindle entry. No errors. Rule behavior and LAN
+  peer access remain untested; Kindle stays in airplane mode.
 - Finish host-key provisioning and exact configuration actions for SSH.
 - Final action sheet must specify source hashes, exact copy/menu actions,
   expected results, wait guidance and stop rules. No firmware transfer,
@@ -131,3 +132,6 @@ itself establish an always-blocked rule or successful LAN access on this router.
 Inspect the actual Internet filtering controls before choosing a rule; do not
 enable Kindle Wi-Fi merely to populate the device list. Router firmware/version
 and actual available controls are still unobserved.
+
+Update: actual UI help confirmed port ranges including `0-65535`; owner confirmed
+that the enabled device-specific rule saved successfully. See experiment log.

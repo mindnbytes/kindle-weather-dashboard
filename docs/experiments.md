@@ -1,5 +1,24 @@
 # Experiments
 
+## 2026-10-15 — Speedport Kindle internet rule configured
+
+Owner located the Kindle's already-registered router entry by privately matching
+its MAC address. No full MAC recorded. Speedport Smart 4 time rules offered daily
+or weekday schedules but no Never option. Used Port blocking instead. Its help
+explicitly accepts ports 0–65535 and hyphenated ranges.
+
+Owner confirmed saving enabled rule `Kindle-no-internet`, TCP `0-65535`, UDP
+`0-65535`, assigned only to the matched Kindle entry, with no errors. Kindle
+remains in airplane mode. This is configuration evidence only: WAN blocking,
+IPv4/IPv6 coverage, persistence and LAN peer access have not been tested. No
+device firmware or files changed. Verify network behavior before accepting M1
+Wi-Fi access; do not equate a saved rule with measured isolation.
+
+Owner reviewed the proposed downgrade action sheet and recovery limits and
+responded "everything looks good to me", requesting a commit. No downgrade
+commands or device actions were executed. Remaining preparation checks are
+unchanged; this review does not establish network isolation or complete M0/M1.
+
 ## 2026-10-15 — PC-only package compatibility inspection
 
 Downloaded and inspected the selected firmware, legacy jailbreak, universal
